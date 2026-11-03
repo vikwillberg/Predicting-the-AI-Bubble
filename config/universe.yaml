@@ -1,0 +1,99 @@
+# ICARUS data universe.
+# Every ticker is a Yahoo Finance symbol. Series that fail to download are skipped
+# and recorded in data/raw/manifest.json, so the pipeline degrades gracefully.
+
+# ICARUS AI-20: an equal-weight basket of the companies whose valuations are most
+# directly tied to the generative-AI build-out, grouped by layer of the AI stack.
+ai20:
+  - {ticker: NVDA, name: NVIDIA,            layer: compute}
+  - {ticker: AVGO, name: Broadcom,          layer: compute}
+  - {ticker: AMD,  name: AMD,               layer: compute}
+  - {ticker: TSM,  name: TSMC,              layer: compute}
+  - {ticker: ASML, name: ASML,              layer: compute}
+  - {ticker: MU,   name: Micron,            layer: compute}
+  - {ticker: ARM,  name: Arm Holdings,      layer: compute}
+  - {ticker: MSFT, name: Microsoft,         layer: cloud}
+  - {ticker: GOOGL, name: Alphabet,         layer: cloud}
+  - {ticker: AMZN, name: Amazon,            layer: cloud}
+  - {ticker: META, name: Meta Platforms,    layer: cloud}
+  - {ticker: ORCL, name: Oracle,            layer: cloud}
+  - {ticker: CRWV, name: CoreWeave,         layer: cloud}
+  - {ticker: ANET, name: Arista Networks,   layer: infrastructure}
+  - {ticker: SMCI, name: Super Micro,       layer: infrastructure}
+  - {ticker: DELL, name: Dell Technologies, layer: infrastructure}
+  - {ticker: VRT,  name: Vertiv,            layer: power}
+  - {ticker: CEG,  name: Constellation Energy, layer: power}
+  - {ticker: VST,  name: Vistra,            layer: power}
+  - {ticker: PLTR, name: Palantir,          layer: applications}
+
+# Broad benchmarks and market-structure series.
+benchmarks: ["^GSPC", "^IXIC", "^NDX", "^SOX", "^VIX", "^DJI", SPY, RSP, QQQ, SMH, SOXX]
+
+# Long-history sector SPDRs (Dec 1998+) for the Kritzman absorption ratio.
+sectors: [XLK, XLF, XLE, XLV, XLI, XLY, XLP, XLU, XLB]
+
+# Training panel: assets that lived through manias and crashes. The crash model
+# learns what the run-up to a >=40% collapse looks like across eras, asset
+# classes and countries (Greenwood, Shleifer & You, 2019, "Bubbles for Fama").
+# Known limitation: Yahoo only carries survivors (no Pets.com, Lucent, Nortel),
+# which biases single-stock crash rates downward. Documented in the model card.
+panel:
+  indices:     ["^GSPC", "^DJI", "^IXIC", "^NDX", "^SOX", "^N225", "^HSI", "000001.SS",
+                "^TWII", "^KS11", "^BSESN", "^GDAXI", "^BVSP"]
+  commodities: ["CL=F", "GC=F", "SI=F", "HG=F", "NG=F"]
+  crypto:      [BTC-USD, ETH-USD]
+  etfs:        [XLK, XLF, XLE, ARKK, ITB, XHB, KWEB, TAN, ICLN, URA, SMH, QQQ]
+  stocks:      [CSCO, ORCL, INTC, QCOM, AMZN, EBAY, NVDA, AMD, AAPL, MSFT, NOK, ERIC,
+                JNPR, CIEN, MSTR, TSLA, NFLX, ZM, PTON, MRNA, SHOP, XYZ, ROKU, PLUG,
+                FSLR, BIDU, BABA, TOL, LEN, DHI, C, BAC, AIG, GE, NIO, GME, COIN,
+                RIVN, SNOW, DOCU, ENPH, SEDG, BYND, UPST, LCID, SPCE, META, GOOGL]
+
+# FRED macro series (public CSV endpoint, no API key).
+fred:
+  BAA10Y:   Moody's Baa corporate yield minus 10y Treasury (credit risk premium)
+  AAA10Y:   Moody's Aaa corporate yield minus 10y Treasury
+  T10Y2Y:   10y minus 2y Treasury (yield curve)
+  T10Y3M:   10y minus 3m Treasury (yield curve)
+  DGS10:    10-year Treasury yield
+  DFII10:   10-year TIPS real yield
+  DFF:      Effective federal funds rate
+  NFCI:     Chicago Fed National Financial Conditions Index
+  VIXCLS:   CBOE VIX
+  NASDAQCOM: Nasdaq Composite (backup series)
+  M2SL:     M2 money stock
+  WALCL:    Fed balance sheet (total assets)
+  UMCSENT:  University of Michigan consumer sentiment
+  USREC:    NBER recession indicator
+  BAMLH0A0HYM2: ICE BofA US High Yield OAS
+  DCOILWTICO: WTI crude oil spot
+
+# SEC EDGAR XBRL company facts (fundamentals for the AI capex cycle).
+edgar:
+  tickers: [NVDA, MSFT, GOOGL, AMZN, META, ORCL, AVGO, AMD, CRWV, PLTR, MU, ANET, SMCI, DELL]
+  concepts:
+    capex:   [PaymentsToAcquirePropertyPlantAndEquipment, PaymentsToAcquireProductiveAssets]
+    ocf:     [NetCashProvidedByUsedInOperatingActivities]
+    revenue: [Revenues, RevenueFromContractWithCustomerExcludingAssessedTax, SalesRevenueNet]
+    net_income: [NetIncomeLoss]
+    depreciation: [DepreciationDepletionAndAmortization, DepreciationAndAmortization, Depreciation]
+
+# Wikipedia pageviews: a reproducible, free attention/hype gauge (2015-07+).
+wikipedia:
+  - ChatGPT
+  - Artificial_intelligence
+  - Generative_artificial_intelligence
+  - Large_language_model
+  - Nvidia
+  - Anthropic
+  - OpenAI
+  - Dot-com_bubble
+  - Economic_bubble
+  - AI_bubble
+  - Stock_market_crash
+  - Recession
+
+# GDELT global news volume (2017+).
+gdelt:
+  ai_bubble: '"AI bubble"'
+  dotcom_bubble: '"dot-com bubble"'
+  ai_capex: '"AI spending"'

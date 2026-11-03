@@ -1,0 +1,50 @@
+# Model settings. Every threshold that drives a headline number lives here.
+events:
+  burst_drawdown: 0.40     # "bubble bursts" = >=40% fall from running peak (Greenwood, Shleifer & You 2019)
+  bear_drawdown: 0.20      # "bubble cracks" = >=20% fall from running peak (bear market)
+  max_horizon_months: 24   # survival model predicts P(event within k months), k = 1..24
+
+panel:
+  min_history_days: 750    # need ~3 years of history before a series enters the panel
+  sample_freq: ME          # month-end sampling for the panel
+  exclude_if_drawdown_ge: 0.40  # a series already 40% below its peak has already burst
+
+validation:
+  first_test_year: 1995    # walk-forward evaluation starts here
+  embargo_months: 24       # purge training labels that overlap the test window
+
+psy:
+  lags: 1
+  rolling_window_months: 120  # BSADF uses at most the last 10 years (comparable across assets)
+  mc_reps: 1000
+  seed: 7
+
+lppls:
+  window_min: 125          # trading days
+  window_max: 750
+  window_step: 25
+  # Qualification filters (Sornette et al. 2015, Demos & Sornette 2017)
+  m_range: [0.01, 0.99]
+  omega_range: [2.0, 25.0]
+  tc_fit_frac: 0.2         # fit tc in [t2 - 0.2 dt, t2 + 0.2 dt]
+  tc_qual_frac: [-0.05, 0.10]
+  min_oscillations: 2.5
+  min_damping: 0.5
+
+hmm:
+  n_states: 3
+  n_restarts: 12
+  seed: 11
+
+risk_index:
+  # Pillar weights for the composite Bubble Risk Index (0-100). A Dirichlet
+  # weight-sensitivity analysis is reported alongside, so no single choice
+  # drives the conclusion.
+  weights:
+    price_dynamics: 1.0
+    valuation: 1.0
+    fundamentals: 1.0
+    market_structure: 1.0
+    credit_macro: 1.0
+    sentiment: 0.5
+    issuance: 0.5

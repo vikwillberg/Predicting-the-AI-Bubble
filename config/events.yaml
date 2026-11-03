@@ -1,0 +1,21 @@
+# Annotated milestones for charts. Dates are the first trading day affected.
+ai_events:
+  - {date: "2022-11-30", label: "ChatGPT launches"}
+  - {date: "2023-03-14", label: "GPT-4"}
+  - {date: "2023-05-25", label: "NVIDIA guidance shock"}
+  - {date: "2025-01-27", label: "DeepSeek selloff"}
+  - {date: "2025-04-03", label: "Tariff crash"}
+  - {date: "2026-06-12", label: "SpaceX IPO"}
+  - {date: "2026-10-26", label: "Anthropic S-1"}
+
+dotcom_events:
+  - {date: "1995-08-09", label: "Netscape IPO"}
+  - {date: "1996-12-05", label: "\"Irrational exuberance\""}
+  - {date: "1998-10-08", label: "LTCM bottom"}
+  - {date: "2000-03-10", label: "NASDAQ peak"}
+  - {date: "2002-10-09", label: "NASDAQ bottom"}
+
+# Catalysts used to align the AI boom with the dot-com boom in the analog model.
+analog_anchors:
+  dotcom: "1995-08-09"   # Netscape IPO: the moment the public "got" the internet
+  ai: "2022-11-30"       # ChatGPT launch: the moment the public "got" generative AI
