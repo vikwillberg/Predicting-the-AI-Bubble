@@ -7,7 +7,7 @@
     {
       "check": "non_empty",
       "ok": true,
-      "detail": "662399 rows",
+      "detail": "662403 rows",
       "severity": "error"
     },
     {
@@ -37,7 +37,7 @@
     {
       "check": "no_future_dates",
       "ok": true,
-      "detail": "max date 2026-11-02",
+      "detail": "max date 2026-11-03",
       "severity": "error"
     },
     {

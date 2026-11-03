@@ -1,5 +1,5 @@
 {
-  "run_utc": "2026-11-03T14:48:17+00:00",
+  "run_utc": "2026-11-03T15:41:34+00:00",
   "sources": {
     "edgar_facts": {
       "failures": {
@@ -15,13 +15,11 @@
       "sha256_16": "b4ba65ed43f7f61a"
     },
     "gdelt": {
-      "failures": {
-        "ai_bubble": "HTTPSConnectionPool(host='api.gdeltproject.org', port=443): Max retries exceeded with url: /api/v2/doc/doc?query=%22AI%20bubble%22&mode=timelinevolraw&format=json&startdatetime=20170101000000&enddatetime=20261103235959&timelinesmooth=0 (Caused by ProtocolError('Connection aborted.', RemoteDisconnected('Remote end closed connection without response')))"
-      },
+      "failures": {},
       "max_date": "2026-11-03",
       "min_date": "2017-01-01",
-      "rows": 7094,
-      "sha256_16": "417aa534c88420a8"
+      "rows": 10641,
+      "sha256_16": "2f370215e7e16a5d"
     },
     "multpl": {
       "failures": {},
@@ -34,10 +32,10 @@
       "failures": {
         "JNPR": "yahoo: Yahoo download failed for JNPR: empty response; stooq: Stooq returned no data for JNPR"
       },
-      "max_date": "2026-11-02",
+      "max_date": "2026-11-03",
       "min_date": "1927-12-30",
-      "rows": 662399,
-      "sha256_16": "9d600701c5d1802d",
+      "rows": 662403,
+      "sha256_16": "382347942d4f8073",
       "tickers": 102
     },
     "valuation_snapshots": {
@@ -45,7 +43,7 @@
       "max_date": "2026-11-03",
       "min_date": "2026-11-03",
       "rows": 20,
-      "sha256_16": "91293d2903abff01"
+      "sha256_16": "4a1d9713ef100407"
     },
     "wiki_pageviews": {
       "failures": {},
