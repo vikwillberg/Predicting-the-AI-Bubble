@@ -84,24 +84,35 @@ def parse_gdelt_timeline(payload: dict, key: str) -> pd.DataFrame:
     return pd.DataFrame(rows, columns=["date", "query_key", "articles", "total_articles"])
 
 
-def fetch_gdelt(queries: dict[str, str], start: str = "20170101") -> tuple[pd.DataFrame, dict[str, str]]:
-    sess = session(total_retries=3)
+def fetch_gdelt(queries: dict[str, str], start: str = "20170101", passes: int = 3) -> tuple[pd.DataFrame, dict[str, str]]:
+    """GDELT allows about one request per 5 seconds per IP, and GitHub runners share
+    IPs, so 429s happen. Failed queries are retried in later passes after a
+    cool-down instead of hammering the API."""
+    sess = session(total_retries=1)
     end = pd.Timestamp.now(tz="UTC").strftime("%Y%m%d")
     frames, failures = [], {}
-    for key, q in queries.items():
-        try:
-            url = GDELT_URL.format(q=quote(q), start=start, end=end)
-            resp = sess.get(url, timeout=120)
-            resp.raise_for_status()
-            df = parse_gdelt_timeline(resp.json(), key)
-            if df.empty:
-                raise RuntimeError("empty timeline")
-            frames.append(df)
-            log.info("gdelt %s: %d points", key, len(df))
-        except Exception as exc:
-            failures[key] = str(exc)
-            log.error("gdelt %s failed: %s", key, exc)
-        time.sleep(6)  # GDELT asks for at most one request every 5 seconds
+    pending = dict(queries)
+    for p in range(passes):
+        if p:
+            time.sleep(45 * p)
+        for key, q in list(pending.items()):
+            try:
+                url = GDELT_URL.format(q=quote(q), start=start, end=end)
+                resp = sess.get(url, timeout=120)
+                resp.raise_for_status()
+                df = parse_gdelt_timeline(resp.json(), key)
+                if df.empty:
+                    raise RuntimeError("empty timeline")
+                frames.append(df)
+                pending.pop(key)
+                failures.pop(key, None)
+                log.info("gdelt %s: %d points", key, len(df))
+            except Exception as exc:
+                failures[key] = str(exc)
+                log.warning("gdelt %s failed on pass %d: %s", key, p + 1, exc)
+            time.sleep(8)
+        if not pending:
+            break
     out = pd.concat(frames, ignore_index=True) if frames else pd.DataFrame(
         columns=["date", "query_key", "articles", "total_articles"])
     return out, failures

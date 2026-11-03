@@ -22,6 +22,16 @@ log = logging.getLogger(__name__)
 COLUMNS = ["date", "ticker", "open", "high", "low", "close", "adj_close", "volume", "split_factor", "source"]
 
 
+def drop_unfinished_session(df: pd.DataFrame, now: pd.Timestamp | None = None) -> pd.DataFrame:
+    """Drop today's bar if the scrape runs before the US close (21:00 UTC), so an
+    intraday print is never treated as a closing price."""
+    now = now or pd.Timestamp.now(tz="UTC")
+    if now.hour < 21:
+        today = now.tz_localize(None).normalize() if now.tzinfo else now.normalize()
+        df = df[df["date"] < today]
+    return df
+
+
 def _normalise_yahoo(hist: pd.DataFrame, ticker: str) -> pd.DataFrame:
     if hist is None or hist.empty:
         return pd.DataFrame(columns=COLUMNS)
@@ -45,6 +55,7 @@ def _normalise_yahoo(hist: pd.DataFrame, ticker: str) -> pd.DataFrame:
     df["split_factor"] = df["split_factor"].fillna(0.0).replace(0.0, 1.0)
     df = df.dropna(subset=["close"])
     df = df[df["close"] > 0]
+    df = drop_unfinished_session(df)
     # Yahoo occasionally emits two rows for the same session (e.g. a partial
     # intraday row). Keep the last one.
     return df.drop_duplicates(subset=["date"], keep="last")[COLUMNS]
@@ -119,6 +130,43 @@ def fetch_many(tickers: list[str], pause: float = 0.6) -> tuple[pd.DataFrame, di
         time.sleep(pause)
     out = pd.concat(frames, ignore_index=True) if frames else pd.DataFrame(columns=COLUMNS)
     return out, failures
+
+
+STATEMENT_ITEMS = {
+    "cashflow": ["CapitalExpenditure", "OperatingCashFlow", "FreeCashFlow", "DepreciationAndAmortization",
+                 "DepreciationAmortizationDepletion"],
+    "income": ["TotalRevenue", "NetIncome", "OperatingIncome"],
+}
+
+
+def fetch_yahoo_fundamentals(tickers: list[str], pause: float = 0.6) -> tuple[pd.DataFrame, dict[str, str]]:
+    """Quarterly and annual statements from Yahoo: the fallback when SEC EDGAR is
+    unavailable. Shorter history than EDGAR (about 5 quarters / 4 years) but enough
+    to measure the AI capex surge. Values are in each company's reporting currency."""
+    import yfinance as yf
+
+    rows, failures = [], {}
+    for t in tickers:
+        try:
+            tk = yf.Ticker(t)
+            for freq in ("quarterly", "yearly"):
+                for kind, items in STATEMENT_ITEMS.items():
+                    stmt = tk.get_cashflow(freq=freq) if kind == "cashflow" else tk.get_income_stmt(freq=freq)
+                    if stmt is None or stmt.empty:
+                        continue
+                    for item in items:
+                        if item not in stmt.index:
+                            continue
+                        for period_end, val in stmt.loc[item].items():
+                            if pd.notna(val):
+                                rows.append({"ticker": t, "period_end": pd.Timestamp(period_end), "freq": freq,
+                                             "item": item, "value": float(val), "source": "yahoo"})
+        except Exception as exc:
+            failures[t] = str(exc)
+            log.warning("yahoo fundamentals failed for %s: %s", t, exc)
+        time.sleep(pause)
+    df = pd.DataFrame(rows, columns=["ticker", "period_end", "freq", "item", "value", "source"])
+    return df.drop_duplicates(subset=["ticker", "period_end", "freq", "item"]), failures
 
 
 VALUATION_FIELDS = [

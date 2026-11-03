@@ -64,6 +64,10 @@ def run(sources: list[str] | None = None) -> dict:
     if "edgar" in sources:
         df, fails = edgar.fetch_many(u["edgar"]["tickers"], u["edgar"]["concepts"])
         record("edgar_facts", df, fails)
+        # Yahoo statements: always collected (they cover the newest quarter fastest)
+        # and the only fundamentals source when SEC rejects the request.
+        df, fails = prices.fetch_yahoo_fundamentals(u["edgar"]["tickers"])
+        record("yahoo_fundamentals", df, fails)
 
     if "wikipedia" in sources:
         df, fails = attention.fetch_pageviews(u["wikipedia"])
