@@ -42,7 +42,11 @@ CoreWeave), infrastructure (Arista, Super Micro, Dell), power (Vertiv, Constella
 applications (Palantir). A *burst* is a fall of 40% or more from the running peak, the crash definition
 from Greenwood, Shleifer & You (2019, *Bubbles for Fama*). A *bear market* is a 20% fall.
 
-## What the launch analysis found (data to Nov 2, 2026)
+## Launch analysis, Nov 3, 2026 (frozen snapshot)
+
+*The numbers in this section are frozen at launch and match the LinkedIn post. The table above is re-run
+every week on freshly scraped data, so it moves with the market; two scrapes of the same day can also
+differ by a point or two as the data provider revises its history.*
 
 1. **The AI trade peaked on Oct 6, 2026, and it is cracking from the inside.** The AI-20 is 20% below its
    high, but the median member is down 31%, and 15 of the 20 are in bear markets: CoreWeave -73%,

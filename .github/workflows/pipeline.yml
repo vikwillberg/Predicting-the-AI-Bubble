@@ -69,15 +69,28 @@ jobs:
             reports/results.json
           retention-days: 90
 
+      # This run checked out the commit that triggered it, but the branch may have
+      # moved since (a code push, or another run's results). Merging regenerated
+      # charts and JSON conflicts, so instead: move to the newest commit, put this
+      # run's results back, re-render every output from them, and push. Generated
+      # files are rebuilt rather than merged, so concurrent runs can't conflict.
       - name: Commit results
         run: |
+          set -euo pipefail
           git config user.name "icarus-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add reports docs README.md data/raw/manifest.json data/raw/validation_report.json
-          if git diff --cached --quiet; then echo "Nothing changed"; exit 0; fi
-          git commit -m "pipeline: refresh forecast ($(date -u +%F))"
+          keep="$(mktemp -d)"
+          cp reports/results.json data/raw/manifest.json data/raw/validation_report.json "$keep/"
           for i in 1 2 3 4; do
-            git pull --rebase origin "${GITHUB_REF_NAME}" && git push origin "HEAD:${GITHUB_REF_NAME}" && exit 0
+            git fetch -q --depth=1 origin "${GITHUB_REF_NAME}"
+            git reset -q --hard FETCH_HEAD
+            cp "$keep/results.json" reports/results.json
+            cp "$keep/manifest.json" "$keep/validation_report.json" data/raw/
+            python -m icarus report
+            git add reports docs README.md data/raw/manifest.json data/raw/validation_report.json
+            if git diff --cached --quiet; then echo "Nothing changed"; exit 0; fi
+            git commit -q -m "pipeline: refresh forecast ($(date -u +%F))"
+            git push origin "HEAD:${GITHUB_REF_NAME}" && exit 0
             sleep $((i * 5))
           done
           exit 1
