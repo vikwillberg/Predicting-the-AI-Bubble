@@ -186,33 +186,42 @@ def slide4(r: dict, wb: dict) -> None:
 
 def post_text(r: dict) -> str:
     ai = r["survival"]["burst"]["targets"]["AI20"]
-    v = r["verdict"]
-    ex = v.get("lppls_ex_ante")
-    rd = r["fundamentals"]["reverse_dcf"]["scenarios"]["IPO ($1.5T)"]["required_revenue_b"]["p50"]
+    ex = r["verdict"].get("lppls_ex_ante")
+    need = r["fundamentals"]["reverse_dcf"]["scenarios"]["IPO ($1.5T)"]["required_revenue_b"]["p50"]
+    amzn = r["fundamentals"]["benchmarks"].get("AMZN", {}).get("revenue_b", 0)
     s = r["systemic"]
     cap = r["fundamentals"]["capex"]["latest"]
+    ndx = next((e for e in r["survival"]["burst"]["famous"] if e["episode"] == "Nasdaq-100 2000"), None)
+    peak = pd.Timestamp(ai["peak_date"])
     lines = [
-        "Anthropic is about to list at up to $1.5 trillion. Everyone's asking: is AI a bubble, and when does it pop?",
+        "Anthropic is about to go public at a reported $1.5 trillion. So is AI a bubble, and when does it pop?",
         "",
-        f"So I built a model to answer it. ICARUS learns what the year before a crash looks like from "
-        f"{r['survival']['burst']['n_series']} assets "
-        f"since 1927, from the dot-com bust to bitcoin, and scores today's AI leaders.",
+        f"I built a model to find out. It learns what the year before a crash looks like from "
+        f"{r['survival']['burst']['n_series']} assets since 1927, then scores a basket of 20 AI leaders.",
         "",
-        f"The answer: {pct(ai['p12'])} odds the AI-20 falls 40%+ from its Oct 6 peak within a year, "
+        f"The answer: a {pct(ai['p12'])} chance the basket falls 40%+ from its {peak:%b %-d} peak within a year. "
         f"{pct(ai['p24'])} within two.",
         "",
-        f"Why so high? {s['ai20_n_in_bear']} of {s['ai20_n_members']} AI leaders are already in bear markets while "
-        f"Microsoft and NVIDIA hold up. That's the 2000 pattern. And Big Tech now spends ${cap['capex_to_ocf']:.2f} on "
-        f"capex for every $1 of cash its businesses bring in.",
-        "",
-        f"At $1.5T, Anthropic needs ~${rd:.0f}B of revenue by 2036. Possible, but it's a big ask.",
+        f"Why so high? {s['ai20_n_in_bear']} of the {s['ai20_n_members']} are already in bear markets while Microsoft "
+        f"and NVIDIA hold up. That's the 2000 pattern. Last quarter, Big Tech spent ${cap['capex_to_ocf']:.2f} on capex "
+        f"for every $1 of cash its businesses brought in. And to justify $1.5T, Anthropic needs about "
+        f"${round(need, -1):.0f}B of revenue by 2036." + (" That's more than Amazon makes today." if need > amzn else ""),
     ]
     if ex:
-        lines += ["", f"The part that surprised me: Sornette's bubble clock, fitted {ex['days_before_peak']} days before the top, "
-                      f"put the critical point at {pd.Timestamp(ex['tc_median']):%b %-d}. The top came {pd.Timestamp(ex['peak']):%b %-d}."]
-    lines += ["", "43% isn't a sell signal. It's a risk, not a certainty.".replace("43%", pct(ai["p12"])),
-              "", "What would you add to the model? Code in the comments."]
+        lines += ["", f"The part that surprised me: on {pd.Timestamp(ex['forecast_made']):%b %-d}, Sornette's bubble "
+                      f"model said the AI basket had hit its critical point. It peaked "
+                      f"{ex['days_before_peak']} days later."]
+    if ndx:
+        lines += ["", f"Backtest check: at the Nasdaq's 2000 peak, the same model said {pct(ndx['p12_at_peak'])}, "
+                      f"about {ndx['lift']:.0f}x the normal rate at the time."]
+    lines += ["", f"{pct(ai['p12'])} is a risk, not a certainty.", "", "What would you add? Code in the comments."]
     return "\n".join(lines)
+
+
+def first_comment() -> str:
+    return ("Code, data and methodology: https://github.com/vikwillberg/Predicting-the-AI-Bubble\n"
+            "Built with Python, SQL (DuckDB), Go and GitHub Actions. It re-scrapes the data and updates the "
+            "forecast every Monday. Not investment advice.")
 
 
 def workbook(r: dict, sheets: dict) -> None:
@@ -277,4 +286,4 @@ def run() -> None:
     pngs = [str(OUT / f"slide_{i}.png") for i in range(1, N + 1)]
     (OUT / "icarus_carousel.pdf").write_bytes(img2pdf.convert(pngs, layout_fun=layout))
     workbook(r, sheets)
-    (OUT / "post.md").write_text(post_text(r) + "\n")
+    (OUT / "post.md").write_text(post_text(r) + "\n\n---\nFirst comment:\n\n" + first_comment() + "\n")
