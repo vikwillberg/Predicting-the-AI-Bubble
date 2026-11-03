@@ -190,7 +190,7 @@ python -m icarus all         # SQL warehouse -> models -> figures, README block,
 ```
 
 ```bash
-python -m pytest -q          # 22 tests: synthetic ground truth, SQL edge cases, engine parity
+python -m pytest -q          # 23 tests: synthetic ground truth, SQL edge cases, engine parity
 ```
 
 `make all` runs the same steps. To collect 15+ years of quarterly fundamentals from SEC EDGAR instead of
