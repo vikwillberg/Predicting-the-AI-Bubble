@@ -7,7 +7,7 @@
     {
       "check": "non_empty",
       "ok": true,
-      "detail": "662500 rows",
+      "detail": "662399 rows",
       "severity": "error"
     },
     {
@@ -37,7 +37,7 @@
     {
       "check": "no_future_dates",
       "ok": true,
-      "detail": "max date 2026-11-03",
+      "detail": "max date 2026-11-02",
       "severity": "error"
     },
     {
@@ -115,7 +115,7 @@
     {
       "check": "fred_range:VIXCLS",
       "ok": true,
-      "detail": "n=9307 range [9.14, 82.69]",
+      "detail": "n=9308 range [9.14, 82.69]",
       "severity": "warning"
     },
     {
