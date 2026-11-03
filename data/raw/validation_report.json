@@ -1,0 +1,128 @@
+{
+  "passed": true,
+  "n_checks": 20,
+  "errors": [],
+  "warnings": [],
+  "results": [
+    {
+      "check": "non_empty",
+      "ok": true,
+      "detail": "662500 rows",
+      "severity": "error"
+    },
+    {
+      "check": "core_series_present",
+      "ok": true,
+      "detail": "missing: []",
+      "severity": "error"
+    },
+    {
+      "check": "ai20_coverage",
+      "ok": true,
+      "detail": "missing AI-20 names: []",
+      "severity": "error"
+    },
+    {
+      "check": "positive_prices",
+      "ok": true,
+      "detail": "all closes > 0",
+      "severity": "error"
+    },
+    {
+      "check": "unique_ticker_date",
+      "ok": true,
+      "detail": "0 duplicate rows",
+      "severity": "error"
+    },
+    {
+      "check": "no_future_dates",
+      "ok": true,
+      "detail": "max date 2026-11-03",
+      "severity": "error"
+    },
+    {
+      "check": "freshness",
+      "ok": true,
+      "detail": "stale series: []",
+      "severity": "warning"
+    },
+    {
+      "check": "index_jump_sanity",
+      "ok": true,
+      "detail": "max |daily move| 0.205",
+      "severity": "error"
+    },
+    {
+      "check": "known_close:^GSPC@1987-10-19",
+      "ok": true,
+      "detail": "expected 224.84, got 224.84 (0.000%)",
+      "severity": "error"
+    },
+    {
+      "check": "known_close:^IXIC@2000-03-10",
+      "ok": true,
+      "detail": "expected 5048.62, got 5048.62 (0.000%)",
+      "severity": "error"
+    },
+    {
+      "check": "known_close:^IXIC@2002-10-09",
+      "ok": true,
+      "detail": "expected 1114.11, got 1114.11 (0.000%)",
+      "severity": "error"
+    },
+    {
+      "check": "known_close:^GSPC@2007-10-09",
+      "ok": true,
+      "detail": "expected 1565.15, got 1565.15 (0.000%)",
+      "severity": "error"
+    },
+    {
+      "check": "known_close:^GSPC@2009-03-09",
+      "ok": true,
+      "detail": "expected 676.53, got 676.53 (0.000%)",
+      "severity": "error"
+    },
+    {
+      "check": "known_close:^GSPC@2020-02-19",
+      "ok": true,
+      "detail": "expected 3386.15, got 3386.15 (0.000%)",
+      "severity": "error"
+    },
+    {
+      "check": "known_close:^GSPC@2020-03-23",
+      "ok": true,
+      "detail": "expected 2237.4, got 2237.40 (0.000%)",
+      "severity": "error"
+    },
+    {
+      "check": "known_close:^N225@1989-12-29",
+      "ok": true,
+      "detail": "expected 38915.87, got 38915.87 (0.000%)",
+      "severity": "error"
+    },
+    {
+      "check": "fred_range:DGS10",
+      "ok": true,
+      "detail": "n=16193 range [0.52, 15.84]",
+      "severity": "warning"
+    },
+    {
+      "check": "fred_range:BAA10Y",
+      "ok": true,
+      "detail": "n=10208 range [1.16, 6.16]",
+      "severity": "warning"
+    },
+    {
+      "check": "fred_range:VIXCLS",
+      "ok": true,
+      "detail": "n=9307 range [9.14, 82.69]",
+      "severity": "warning"
+    },
+    {
+      "check": "fred_range:DFF",
+      "ok": true,
+      "detail": "n=26420 range [0.04, 22.36]",
+      "severity": "warning"
+    }
+  ]
+}
