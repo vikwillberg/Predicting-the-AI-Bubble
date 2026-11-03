@@ -24,11 +24,11 @@ so every backtest number below is out of sample.
 |---|---|
 | Is AI in a bubble? | **Yes**: Bubble Risk Index **81/100** (range 76-89 under random pillar weights); PSY test finds explosive growth in ^NDX since 2023 |
 | Where are we? | **Deflating**: AI-20 peaked 2026-10-06, now 19.7% below; HMM regime **stress** (83%); 15 of 20 members in bear markets |
-| P(AI-20 falls 40%+ within 12 months) | **43%** (80% CI 31%-52%) |
-| P(AI-20 falls 40%+ within 24 months) | **64%** (80% CI 55%-75%) |
+| P(AI-20 falls 40%+ within 12 months) | **42%** (80% CI 31%-52%) |
+| P(AI-20 falls 40%+ within 24 months) | **64%** (80% CI 55%-74%) |
 | When? | Most likely burst month **2027-04**; median, if it bursts within 24 months: **2027-08**; dot-com clock equivalent: 2027-07-19 |
 | P(Nasdaq-100 bear market, -20%, within 12 months) | 59% |
-| P(S&P 500 bear market, -20%, within 12 months) | 26% |
+| P(S&P 500 bear market, -20%, within 12 months) | 28% |
 | LPPLS bubble clock (ex-ante) | On 2026-10-02 it put the critical time at **2026-10-02**; the AI-20 peaked **2026-10-06** (-4 days) |
 | Capex strain | Hyperscalers spent **1.16x** their operating cash flow on capex last quarter; 4 of 5 spent more than they generated |
 | Anthropic IPO at $1.5T | Requires ~**$802B** revenue by 2036 (80% range $585-1123B) |

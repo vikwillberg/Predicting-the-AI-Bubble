@@ -1,5 +1,5 @@
 {
-  "run_utc": "2026-11-03T15:41:34+00:00",
+  "run_utc": "2026-11-03T16:33:20+00:00",
   "sources": {
     "edgar_facts": {
       "failures": {
@@ -12,14 +12,16 @@
       "max_date": "2026-11-02",
       "min_date": "1854-12-01",
       "rows": 134940,
-      "sha256_16": "b4ba65ed43f7f61a"
+      "sha256_16": "3a0c4d93e84b0172"
     },
     "gdelt": {
-      "failures": {},
+      "failures": {
+        "dotcom_bubble": "HTTPSConnectionPool(host='api.gdeltproject.org', port=443): Max retries exceeded with url: /api/v2/doc/doc?query=%22dot-com%20bubble%22&mode=timelinevolraw&format=json&startdatetime=20170101000000&enddatetime=20261103235959&timelinesmooth=0 (Caused by ResponseError('too many 429 error responses'))"
+      },
       "max_date": "2026-11-03",
       "min_date": "2017-01-01",
-      "rows": 10641,
-      "sha256_16": "2f370215e7e16a5d"
+      "rows": 7094,
+      "sha256_16": "5efbac888b78da2f"
     },
     "multpl": {
       "failures": {},
@@ -34,8 +36,8 @@
       },
       "max_date": "2026-11-03",
       "min_date": "1927-12-30",
-      "rows": 662403,
-      "sha256_16": "382347942d4f8073",
+      "rows": 662400,
+      "sha256_16": "948a87150bb2d936",
       "tickers": 102
     },
     "valuation_snapshots": {
@@ -43,7 +45,7 @@
       "max_date": "2026-11-03",
       "min_date": "2026-11-03",
       "rows": 20,
-      "sha256_16": "4a1d9713ef100407"
+      "sha256_16": "21de93be5d4368dd"
     },
     "wiki_pageviews": {
       "failures": {},

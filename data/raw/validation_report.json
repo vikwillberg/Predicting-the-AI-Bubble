@@ -7,7 +7,7 @@
     {
       "check": "non_empty",
       "ok": true,
-      "detail": "662403 rows",
+      "detail": "662400 rows",
       "severity": "error"
     },
     {
