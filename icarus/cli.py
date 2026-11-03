@@ -6,6 +6,7 @@
     models     run every model and write data/processed/results.json
     report     render figures, README results block and dashboard data
     all        warehouse -> models -> report (on existing raw data)
+    linkedin   render the 4-slide LinkedIn carousel, PDF, workbook and post text
 """
 
 from __future__ import annotations
@@ -19,7 +20,7 @@ import time
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(prog="icarus", description=__doc__,
                                      formatter_class=argparse.RawDescriptionHelpFormatter)
-    parser.add_argument("command", choices=["ingest", "validate", "warehouse", "models", "report", "all"])
+    parser.add_argument("command", choices=["ingest", "validate", "warehouse", "models", "report", "all", "linkedin"])
     parser.add_argument("--sources", nargs="*", help="subset of sources for `ingest`")
     parser.add_argument("--fast", action="store_true", help="fewer Monte Carlo reps and windows (for CI)")
     parser.add_argument("-v", "--verbose", action="store_true")
@@ -44,6 +45,9 @@ def main(argv: list[str] | None = None) -> int:
     if args.command in ("report", "all"):
         from .report import build as report_build
         report_build.run()
+    if args.command == "linkedin":
+        from .report import linkedin
+        linkedin.run()
 
     logging.getLogger("icarus").info("done in %.1fs", time.time() - t0)
     return 0

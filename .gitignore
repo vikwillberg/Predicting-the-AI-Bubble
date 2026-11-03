@@ -9,3 +9,6 @@ data/processed/*.duckdb
 data/processed/*.duckdb.wal
 data/processed/cache/
 .DS_Store
+# Raw data snapshots are uploaded as workflow artifacts instead of committed.
+data/raw/*.parquet
+data/processed/artifacts/

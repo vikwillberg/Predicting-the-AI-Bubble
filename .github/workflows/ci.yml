@@ -1,0 +1,38 @@
+name: Tests
+
+on:
+  push:
+    branches: ["main", "claude/**"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+          cache: pip
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version: "1.24"
+          cache: false
+
+      - name: Go vet and tests
+        run: |
+          cd engine
+          test -z "$(gofmt -l .)" || (gofmt -l . && exit 1)
+          go vet ./...
+          go test ./...
+          go build -o ../bin/lppls ./cmd/lppls
+
+      - name: Install Python dependencies
+        run: pip install -r requirements.txt
+
+      - name: Python tests (includes Go/Python engine parity)
+        run: python -m pytest -q

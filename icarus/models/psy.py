@@ -17,6 +17,8 @@ International Economic Review 56(4).
 
 from __future__ import annotations
 
+from functools import lru_cache
+
 import numpy as np
 import pandas as pd
 
@@ -102,6 +104,7 @@ def bsadf(y: np.ndarray, lags: int = 1, w0: int | None = None, wmax: int | None 
     return out
 
 
+@lru_cache(maxsize=16)   # pure function of its arguments; series of equal length share one simulation
 def critical_values(n: int, lags: int = 1, w0: int | None = None, wmax: int | None = None,
                     reps: int = 1000, seed: int = 7, quantiles=(0.90, 0.95, 0.99)) -> dict[float, np.ndarray]:
     """Monte Carlo critical values for the BSADF sequence under the null of a
@@ -114,6 +117,8 @@ def critical_values(n: int, lags: int = 1, w0: int | None = None, wmax: int | No
         y = np.cumsum(e + 1.0 / n)
         sims[r] = bsadf(y, lags, w0, wmax)
     out: dict = {q: np.nanquantile(sims, q, axis=0) for q in quantiles}
+    for arr in out.values():
+        arr.setflags(write=False)          # results are cached and shared: make them read-only
     # GSADF = sup of the BSADF sequence; its critical value is the quantile of
     # that sup across simulations (not the sup of pointwise quantiles).
     out["gsadf"] = {q: float(np.nanquantile(np.nanmax(sims, axis=1), q)) for q in quantiles}
@@ -139,7 +144,7 @@ def date_stamp(series: pd.Series, lags: int = 1, wmax: int | None = None, reps: 
     w0 = min_window(n if wmax is None else min(n, wmax))
     stat = bsadf(y, lags, w0, wmax)
     sim_len = n if wmax is None else min(n, wmax)
-    cvs = critical_values(sim_len, lags, w0, wmax, reps=reps, seed=seed)
+    cvs = critical_values(sim_len, lags, w0, wmax, reps=reps, seed=seed, quantiles=(0.90, 0.95, 0.99))
     cv95 = cvs[0.95]
     if wmax is not None and n > sim_len:
         # With a rolling cap the null distribution is stationary once a full

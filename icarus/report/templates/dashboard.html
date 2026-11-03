@@ -1,0 +1,530 @@
+<title>ICARUS AI Bubble Monitor</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+<style>
+/* Layout: a field report. Verdict first, then the "when", then seven perspectives, then the evidence, one column that splits into pairs on wide screens. */
+:root {
+  --bg: #fbfaf7; --surface: #ffffff; --ink: #0b0b0b; --ink2: #45443f; --muted: #7d7b74;
+  --grid: #e4e2da; --axis: #b9b7ae; --risk: #b3261e; --risk-wash: rgba(179, 38, 30, .12);
+  --context: #8f8c83; --context-lt: #c9c6bc; --compare: #2a78d6; --calm: #12a150;
+  --chip-warn-bg: #f6e3e1; --chip-watch-bg: #f3ecd9; --chip-calm-bg: #e3f1e8;
+  --font: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --step--1: .8125rem; --step-0: .9375rem; --step-1: 1.125rem; --step-2: 1.5rem; --step-3: 2.25rem; --step-4: 3.25rem;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #161614; --surface: #1f1e1c; --ink: #f0efec; --ink2: #c9c7bd; --muted: #9b998f;
+    --grid: #2f2e2a; --axis: #55534d; --risk: #e66767; --risk-wash: rgba(230, 103, 103, .16);
+    --context: #9b998f; --context-lt: #5b5953; --compare: #3987e5; --calm: #3cc274;
+    --chip-warn-bg: #3a2120; --chip-watch-bg: #35301f; --chip-calm-bg: #1d3326; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #161614; --surface: #1f1e1c; --ink: #f0efec; --ink2: #c9c7bd; --muted: #9b998f;
+  --grid: #2f2e2a; --axis: #55534d; --risk: #e66767; --risk-wash: rgba(230, 103, 103, .16);
+  --context: #9b998f; --context-lt: #5b5953; --compare: #3987e5; --calm: #3cc274;
+  --chip-warn-bg: #3a2120; --chip-watch-bg: #35301f; --chip-calm-bg: #1d3326; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink); font-family: var(--font); font-size: var(--step-0); line-height: 1.5; margin: 0; }
+.wrap { max-width: 1160px; margin: 0 auto; padding-block: 28px 56px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+  display: grid; gap: 40px; }
+a { color: var(--compare); }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--compare); outline-offset: 2px; border-radius: 4px; }
+h1, h2, h3 { text-wrap: balance; margin: 0; letter-spacing: -0.015em; }
+p { margin: 0; }
+.eyebrow { font-size: var(--step--1); font-weight: 600; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); }
+.masthead { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px 24px;
+  border-bottom: 1px solid var(--grid); padding-bottom: 14px; }
+.brand { font-weight: 800; letter-spacing: .14em; font-size: var(--step-1); }
+.brand span { font-weight: 500; letter-spacing: 0; color: var(--muted); margin-left: 10px; font-size: var(--step-0); }
+.meta { color: var(--muted); font-size: var(--step--1); font-variant-numeric: tabular-nums; }
+.hero { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 32px; align-items: end; }
+.hero h1 { font-size: var(--step-4); line-height: 1.04; font-weight: 800; margin-top: 10px; }
+.hero h1 em { font-style: normal; color: var(--risk); }
+.lede { color: var(--ink2); font-size: var(--step-1); margin-top: 16px; max-width: 62ch; }
+.tiles { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.tile { background: var(--surface); border: 1px solid var(--grid); border-radius: 10px; padding: 14px 16px; display: grid; gap: 4px; }
+.tile .label { font-size: var(--step--1); color: var(--muted); }
+.tile .value { font-size: var(--step-3); font-weight: 700; line-height: 1.1; letter-spacing: -0.02em; }
+.tile .value.risk { color: var(--risk); }
+.tile .sub { font-size: var(--step--1); color: var(--ink2); font-variant-numeric: tabular-nums; }
+section { display: grid; gap: 14px; }
+section > header { display: grid; gap: 6px; }
+section h2 { font-size: var(--step-2); font-weight: 700; }
+.dek { color: var(--ink2); max-width: 70ch; }
+.card { background: var(--surface); border: 1px solid var(--grid); border-radius: 10px; padding: 18px; min-width: 0; }
+.pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 40px; }
+.chart { width: 100%; position: relative; }
+.chart svg { width: 100%; height: auto; display: block; overflow: visible; }
+.chart text { fill: var(--muted); font-family: var(--font); font-size: 12px; }
+.chart .gridline { stroke: var(--grid); stroke-width: 1; }
+.chart .baseline { stroke: var(--axis); stroke-width: 1; }
+.note { font-size: var(--step--1); color: var(--muted); }
+.callout { border-left: 3px solid var(--risk); padding: 2px 0 2px 12px; color: var(--ink); font-weight: 500; }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: var(--step--1); color: var(--ink2); }
+.legend i { display: inline-block; width: 18px; height: 3px; border-radius: 2px; vertical-align: middle; margin-right: 6px; }
+.legend i.box { width: 12px; height: 12px; border-radius: 3px; }
+.tip { position: absolute; pointer-events: none; background: var(--ink); color: var(--bg); font-size: 12px; line-height: 1.4;
+  padding: 6px 9px; border-radius: 6px; white-space: nowrap; transform: translate(-50%, calc(-100% - 10px)); z-index: 5;
+  font-variant-numeric: tabular-nums; }
+/* Pillars */
+.pillars { display: grid; gap: 0; }
+.pillar { display: grid; grid-template-columns: 190px minmax(0, 1fr) 74px; gap: 6px 16px; align-items: center;
+  padding: 12px 0; border-top: 1px solid var(--grid); }
+.pillar:first-child { border-top: 0; }
+.pillar .name { font-weight: 600; }
+.pillar .finding { grid-column: 2 / 4; color: var(--ink2); font-size: var(--step--1); }
+.track { position: relative; height: 12px; background: transparent; }
+.track .fill { position: absolute; left: 0; top: 0; bottom: 0; border-radius: 0 4px 4px 0; }
+.track .ref { position: absolute; top: -5px; bottom: -5px; width: 2px; background: var(--ink); }
+.score { font-weight: 700; font-variant-numeric: tabular-nums; text-align: right; }
+.chip { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; border-radius: 999px; padding: 2px 9px; }
+.chip::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
+.chip.warn { background: var(--chip-warn-bg); color: var(--risk); }
+.chip.watch { background: var(--chip-watch-bg); color: var(--ink2); }
+.chip.calm { background: var(--chip-calm-bg); color: var(--calm); }
+/* Bar lists */
+.bars { display: grid; gap: 7px; position: relative; }
+.bar { display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 12px; align-items: center; font-size: var(--step--1); }
+.bar .lab { color: var(--ink2); text-align: right; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.bar.me .lab { color: var(--ink); font-weight: 700; }
+.bar .tr { position: relative; height: 16px; }
+.bar .f { position: absolute; left: 0; top: 0; bottom: 0; border-radius: 0 4px 4px 0; }
+.bar .v { position: absolute; top: 50%; transform: translateY(-50%); font-weight: 700; color: var(--ink); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.bar .rl { position: absolute; top: -4px; bottom: -4px; width: 2px; background: var(--ink); }
+table.data { border-collapse: collapse; width: 100%; font-size: var(--step--1); font-variant-numeric: tabular-nums; }
+table.data th, table.data td { text-align: left; padding: 7px 10px; border-bottom: 1px solid var(--grid); }
+table.data th { color: var(--muted); font-weight: 600; }
+table.data td.n { text-align: right; }
+.scroll { overflow-x: auto; }
+ul.plain { margin: 0; padding-left: 18px; color: var(--ink2); display: grid; gap: 6px; max-width: 80ch; }
+footer.site { border-top: 1px solid var(--grid); padding-top: 16px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px;
+  color: var(--muted); font-size: var(--step--1); }
+footer.site b { color: var(--ink2); }
+@media (max-width: 860px) {
+  .hero, .pair { grid-template-columns: minmax(0, 1fr); }
+  .hero h1 { font-size: var(--step-3); }
+  .pillar { grid-template-columns: minmax(0, 1fr) 64px; }
+  .pillar .track-cell { grid-column: 1 / 3; grid-row: 2; }
+  .pillar .finding { grid-column: 1 / 3; }
+  .bar { grid-template-columns: 112px minmax(0, 1fr); }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .fill, .f { transition: width .5s ease; }
+}
+</style>
+
+<div class="wrap">
+  <div class="masthead">
+    <div class="brand">ICARUS<span>AI bubble early-warning system</span></div>
+    <div class="meta" id="meta"></div>
+  </div>
+
+  <div class="hero">
+    <div>
+      <div class="eyebrow" id="hero-eyebrow">The verdict</div>
+      <h1 id="hero-title"></h1>
+      <p class="lede" id="hero-lede"></p>
+    </div>
+    <div class="tiles" id="tiles"></div>
+  </div>
+
+  <section>
+    <header>
+      <div class="eyebrow">When does it burst?</div>
+      <h2 id="when-title"></h2>
+      <p class="dek">Probability that each index falls 40% or more from its latest peak, by months ahead. The shaded band is the 80% range from a year-block bootstrap (crash years resampled whole).</p>
+    </header>
+    <div class="card">
+      <div class="chart" id="cdf"></div>
+      <div class="legend" id="cdf-legend" style="margin-top:10px"></div>
+    </div>
+    <p class="callout" id="lppls-callout"></p>
+  </section>
+
+  <section>
+    <header>
+      <div class="eyebrow">Seven perspectives</div>
+      <h2 id="pillars-title"></h2>
+      <p class="dek">Each pillar is a percentile against its own history (100 = most bubble-like). The composite holds within a narrow band under 5,000 random weightings of the pillars.</p>
+    </header>
+    <div class="card pillars" id="pillars"></div>
+  </section>
+
+  <div class="pair">
+    <section>
+      <header>
+        <div class="eyebrow">Breadth</div>
+        <h2 id="breadth-title"></h2>
+        <p class="dek">Each AI-20 company's fall from its all-time high. The black line marks a bear market (-20%).</p>
+      </header>
+      <div class="bars" id="breadth"></div>
+    </section>
+    <section>
+      <header>
+        <div class="eyebrow">Backtest</div>
+        <h2 id="backtest-title"></h2>
+        <p class="dek">Out-of-sample odds of a 40%+ crash within 12 months, at the month each past bubble peaked. Black line: the average base rate.</p>
+      </header>
+      <div class="bars" id="backtest"></div>
+    </section>
+  </div>
+
+  <div class="pair">
+    <section>
+      <header>
+        <div class="eyebrow">The capex test</div>
+        <h2 id="capex-title"></h2>
+        <p class="dek">Microsoft, Alphabet, Amazon, Meta and Oracle combined: quarterly capex vs operating cash flow, $B.</p>
+      </header>
+      <div class="card"><div class="chart" id="capex"></div><div class="legend" id="capex-legend" style="margin-top:8px"></div></div>
+    </section>
+    <section>
+      <header>
+        <div class="eyebrow">The Anthropic IPO</div>
+        <h2 id="anthropic-title"></h2>
+        <p class="dek" id="anthropic-dek"></p>
+      </header>
+      <div class="card"><div class="chart" id="anthropic"></div></div>
+    </section>
+  </div>
+
+  <section>
+    <header>
+      <div class="eyebrow">The dot-com clock</div>
+      <h2 id="clock-title"></h2>
+      <p class="dek">Index level, 100 = the catalyst: the Netscape IPO (Aug 1995) and the ChatGPT launch (Nov 2022). Log scale. The AI-20 is picked with hindsight, so its run-up is flattered; compare the two Nasdaq-100 lines.</p>
+    </header>
+    <div class="card"><div class="chart" id="clock"></div><div class="legend" id="clock-legend" style="margin-top:8px"></div></div>
+    <p class="note" id="analog-note"></p>
+  </section>
+
+  <section>
+    <header>
+      <div class="eyebrow">Model skill</div>
+      <h2>Tested the way it is used: forward in time</h2>
+      <p class="dek">Walk-forward validation, 1995 onward. Each year is predicted by models trained only on labels that were fully known before that year began.</p>
+    </header>
+    <div class="card scroll"><table class="data" id="skill"></table></div>
+  </section>
+
+  <section>
+    <header>
+      <div class="eyebrow">Read this before quoting a number</div>
+      <h2>What the model can and cannot say</h2>
+    </header>
+    <ul class="plain">
+      <li>A probability is not a date. A 40% chance in 12 months still means 60% that it does not happen.</li>
+      <li>The AI-20 is built from today's AI leaders, so its history is flattered by hindsight. The model is trained on 60+ other assets and only scores the AI-20.</li>
+      <li>The training panel holds only assets that still trade (no Pets.com or Lucent), which makes single-stock crashes look rarer than they were.</li>
+      <li>Anthropic and OpenAI figures come from press coverage of filings and funding rounds, each with a source and a confidence level in <code>config/private_marks.yaml</code>.</li>
+      <li>This is a research project, not investment advice.</li>
+    </ul>
+  </section>
+
+  <footer class="site">
+    <div><b>Viktor Berg</b> · Python, SQL (DuckDB), Go, LightGBM, GitHub Actions</div>
+    <div><a href="https://github.com/vikwillberg/Predicting-the-AI-Bubble">Source code and methodology on GitHub</a></div>
+  </footer>
+</div>
+
+<script>
+const D = /*__ICARUS_DATA__*/null;
+
+const pct = (x, d = 0) => x == null || !isFinite(x) ? "n/a" : (d === 0 && x >= 0.995 && x < 1 ? ">99%" : (x * 100).toFixed(d) + "%");
+const fmtDate = s => new Date(s + "T00:00:00").toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
+const fmtMonth = s => new Date(s + "-01T00:00:00").toLocaleDateString("en-US", { month: "long", year: "numeric" });
+const css = v => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+const el = (tag, attrs = {}, html) => { const n = document.createElement(tag); for (const [k, v] of Object.entries(attrs)) n.setAttribute(k, v); if (html != null) n.innerHTML = html; return n; };
+const NS = "http://www.w3.org/2000/svg";
+const s = (tag, attrs = {}) => { const n = document.createElementNS(NS, tag); for (const [k, v] of Object.entries(attrs)) n.setAttribute(k, v); return n; };
+const words = ["none", "one", "two", "three", "four", "five", "six", "all seven"];
+
+function tooltip(container) {
+  let t = container.querySelector(".tip");
+  if (!t) { t = el("div", { class: "tip", role: "status" }); t.hidden = true; container.appendChild(t); }
+  return t;
+}
+
+/* Line chart with crosshair tooltip. series: [{x, y, color, width, label, band, dash}] */
+function lineChart(host, { series, xMin, xMax, yMin, yMax, xTicks, yTicks, xFmt, yFmt, log = false, height = 340, tipFmt }) {
+  host.innerHTML = "";
+  const W = 820, H = height, m = { l: 52, r: 130, t: 14, b: 32 };
+  const ly = v => log ? Math.log(v) : v;
+  const X = v => m.l + (v - xMin) / (xMax - xMin) * (W - m.l - m.r);
+  const Y = v => H - m.b - (ly(v) - ly(yMin)) / (ly(yMax) - ly(yMin)) * (H - m.t - m.b);
+  const svg = s("svg", { viewBox: `0 0 ${W} ${H}`, role: "img" });
+  yTicks.forEach(v => {
+    svg.appendChild(s("line", { x1: m.l, x2: W - m.r, y1: Y(v), y2: Y(v), class: v === yMin ? "baseline" : "gridline" }));
+    const t = s("text", { x: m.l - 8, y: Y(v) + 4, "text-anchor": "end" }); t.textContent = yFmt(v); svg.appendChild(t);
+  });
+  xTicks.forEach(v => { const t = s("text", { x: X(v), y: H - 10, "text-anchor": "middle" }); t.textContent = xFmt(v); svg.appendChild(t); });
+  series.forEach(sr => {
+    if (sr.band) {
+      const pts = sr.x.map((x, i) => `${X(x)},${Y(sr.band.hi[i])}`).concat(sr.x.slice().reverse().map((x, j) => `${X(x)},${Y(sr.band.lo[sr.x.length - 1 - j])}`));
+      svg.appendChild(s("polygon", { points: pts.join(" "), fill: sr.bandColor || css("--risk-wash"), stroke: "none" }));
+    }
+    const d = sr.x.map((x, i) => sr.y[i] == null ? null : `${X(x)},${Y(sr.y[i])}`).filter(Boolean).join(" L");
+    svg.appendChild(s("path", { d: "M" + d, fill: "none", stroke: sr.color, "stroke-width": sr.width || 2, "stroke-linejoin": "round", "stroke-linecap": "round" }));
+    if (sr.endLabel !== false) {
+      let i = sr.y.length - 1; while (i > 0 && sr.y[i] == null) i--;
+      const ex = X(sr.x[i]), ey = Y(sr.y[i]);
+      svg.appendChild(s("circle", { cx: ex, cy: ey, r: 4.5, fill: sr.color, stroke: css("--surface"), "stroke-width": 2 }));
+      const t = s("text", { x: sr.labelLeft ? ex - 9 : ex + 9, y: ey + 4 + (sr.labelDy || 0), "text-anchor": sr.labelLeft ? "end" : "start",
+        style: `fill:${css("--ink")};font-weight:${sr.bold ? 700 : 500}` });
+      t.textContent = sr.endText || sr.label; svg.appendChild(t);
+    }
+  });
+  const cross = s("line", { y1: m.t, y2: H - m.b, stroke: css("--axis"), "stroke-width": 1, visibility: "hidden" });
+  svg.appendChild(cross);
+  const hit = s("rect", { x: m.l, y: m.t, width: W - m.l - m.r, height: H - m.t - m.b, fill: "transparent" });
+  svg.appendChild(hit);
+  host.appendChild(svg);
+  const tip = tooltip(host);
+  const xs = series[0].x;
+  const move = ev => {
+    const r = svg.getBoundingClientRect();
+    const vx = (ev.clientX - r.left) / r.width * W;
+    const xv = xMin + (vx - m.l) / (W - m.l - m.r) * (xMax - xMin);
+    let best = null, bd = Infinity;
+    series.forEach(sr => sr.x.forEach((x, i) => { const dd = Math.abs(x - xv); if (sr === series[0] && dd < bd) { bd = dd; best = i; } }));
+    if (best == null) return;
+    const x = xs[best];
+    cross.setAttribute("x1", X(x)); cross.setAttribute("x2", X(x)); cross.setAttribute("visibility", "visible");
+    tip.innerHTML = tipFmt(x, series.map(sr => { let k = sr.x.indexOf(x); if (k < 0) { let bb = Infinity; sr.x.forEach((xx, ii) => { if (Math.abs(xx - x) < bb) { bb = Math.abs(xx - x); k = ii; } }); } return [sr.label, sr.y[k]]; }));
+    tip.hidden = false;
+    tip.style.left = (X(x) / W * r.width) + "px";
+    tip.style.top = (m.t / H * r.height + 6) + "px";
+  };
+  hit.addEventListener("pointermove", move);
+  hit.addEventListener("pointerleave", () => { tip.hidden = true; cross.setAttribute("visibility", "hidden"); });
+}
+
+/* Horizontal bar list in HTML. rows: [{label, value, color, text, me, tip}] */
+function barList(host, rows, { max, ref, refLabel }) {
+  host.innerHTML = "";
+  const tip = tooltip(host);
+  rows.forEach(r => {
+    const row = el("div", { class: "bar" + (r.me ? " me" : ""), tabindex: "0" });
+    const lab = el("div", { class: "lab" }, r.label);
+    const tr = el("div", { class: "tr" });
+    // Bars use 80% of the track so the value label always fits beside the longest bar.
+    const SCALE = 80;
+    const w = Math.max(0, Math.min(1, r.value / max)) * SCALE;
+    const f = el("div", { class: "f" }); f.style.width = w + "%"; f.style.background = r.color;
+    const v = el("div", { class: "v" }, r.text);
+    let left = w;
+    if (ref != null) { const rp = ref / max * SCALE; if (left < rp + 3 && left + 9 > rp - 1) left = rp + 1.5; }
+    v.style.left = `calc(${left}% + 8px)`;
+    tr.append(f, v);
+    if (ref != null) { const rl = el("div", { class: "rl" }); rl.style.left = (ref / max * SCALE) + "%"; tr.appendChild(rl); }
+    row.append(lab, tr);
+    const show = () => { tip.innerHTML = r.tip || `${r.label}: ${r.text}`; tip.hidden = false; tip.style.left = (row.offsetLeft + row.offsetWidth / 2) + "px"; tip.style.top = row.offsetTop + "px"; };
+    row.addEventListener("pointerenter", show); row.addEventListener("focus", show);
+    row.addEventListener("pointerleave", () => tip.hidden = true); row.addEventListener("blur", () => tip.hidden = true);
+    host.appendChild(row);
+  });
+  if (refLabel) { const n = el("div", { class: "note" }, refLabel); host.appendChild(n); }
+}
+
+function render() {
+  const v = D.verdict, ai = D.targets.burst.AI20, comp = D.composite, sys = D.systemic;
+  document.getElementById("meta").textContent = `Data as of ${fmtDate(D.data_as_of)} · updated by GitHub Actions`;
+
+  // Hero
+  document.getElementById("hero-title").innerHTML = `<em>${pct(ai.p12)}</em> odds the AI boom crashes 40% within a year`;
+  const nBear = sys.ai20_n_in_bear ?? Math.round(sys.ai20_share_in_bear * 20);
+  document.getElementById("hero-lede").textContent =
+    `ICARUS scores the AI trade from seven angles against market history back to 1927. The AI-20, an equal-weight basket of 20 AI leaders, ` +
+    `peaked on ${fmtDate(v.ai20_peak_date)} and is ${pct(-v.ai20_drawdown_from_peak)} below that high. ${nBear} of its 20 members are already in bear markets.`;
+  const stage = { deflating: ["Deflating", "warn"], burst: ["Burst", "warn"], wobbling: ["Wobbling", "watch"], inflating: ["Inflating", "watch"] }[v.stage] || [v.stage, "watch"];
+  const tiles = [
+    ["Burst within 12 months", pct(ai.p12), `80% range ${pct(ai.p12_interval[0])} to ${pct(ai.p12_interval[1])}`, true],
+    ["Burst within 24 months", pct(ai.p24), `80% range ${pct(ai.p24_interval[0])} to ${pct(ai.p24_interval[1])}`, true],
+    ["Bubble Risk Index", `${Math.round(comp.score)}<span style="font-size:.5em;color:var(--muted)">/100</span>`, `Random-weight range ${Math.round(comp.dirichlet_p10)} to ${Math.round(comp.dirichlet_p90)}`, false],
+    ["Stage", `<span class="chip ${stage[1]}" style="font-size:1rem;padding:4px 12px">${stage[0]}</span>`, `Regime: ${v.regime} (${pct(v.regime_probabilities.stress)} stress)`, false],
+  ];
+  const tl = document.getElementById("tiles");
+  tl.innerHTML = "";
+  tiles.forEach(([l, val, sub, risk]) => tl.appendChild(el("div", { class: "tile" }, `<div class="label">${l}</div><div class="value${risk ? " risk" : ""}">${val}</div><div class="sub">${sub}</div>`)));
+
+  // When
+  document.getElementById("when-title").textContent = v.conditional_median_burst_month
+    ? `If it bursts within two years, the middle of the odds is ${fmtMonth(v.conditional_median_burst_month)}`
+    : `Burst odds over the next two years`;
+  const k = [...Array(24).keys()].map(i => i + 1);
+  const tg = D.targets.burst;
+  const ser = [{ x: k, y: ai.cdf, color: css("--risk"), width: 3.2, label: "AI-20", endText: `AI-20 ${pct(ai.p24)}`, bold: true, band: { lo: ai.cdf_p10, hi: ai.cdf_p90 } }];
+  if (tg["^NDX"] && tg["^NDX"].cdf) ser.push({ x: k, y: tg["^NDX"].cdf, color: css("--context"), width: 2.2, label: "Nasdaq-100", endText: `Nasdaq-100 ${pct(tg["^NDX"].p24)}` });
+  if (tg["^GSPC"] && tg["^GSPC"].cdf) ser.push({ x: k, y: tg["^GSPC"].cdf, color: css("--context-lt"), width: 2.2, label: "S&P 500", endText: `S&P 500 ${pct(tg["^GSPC"].p24)}`, labelDy: 6 });
+  const asOf = new Date(ai.as_of + "T00:00:00");
+  lineChart(document.getElementById("cdf"), {
+    series: ser, xMin: 1, xMax: 24, yMin: 0, yMax: 1, xTicks: [1, 3, 6, 9, 12, 15, 18, 21, 24], yTicks: [0, .25, .5, .75, 1],
+    xFmt: m => m + (m === 1 ? " mo" : ""), yFmt: p => Math.round(p * 100) + "%",
+    tipFmt: (m, vals) => { const d = new Date(asOf); d.setMonth(d.getMonth() + m); return `<b>By ${d.toLocaleDateString("en-US", { month: "short", year: "numeric" })}</b><br>` + vals.map(([l, y]) => `${l}: ${pct(y)}`).join("<br>"); }
+  });
+  document.getElementById("cdf-legend").innerHTML = `<span><i style="background:${css("--risk")}"></i>ICARUS AI-20</span><span><i style="background:${css("--context")}"></i>Nasdaq-100</span><span><i style="background:${css("--context-lt")}"></i>S&amp;P 500</span><span><i class="box" style="background:${css("--risk-wash")}"></i>80% bootstrap range</span>`;
+  const ex = v.lppls_ex_ante, bias = v.lppls_historical_bias_days;
+  document.getElementById("lppls-callout").textContent = ex
+    ? `Sornette's LPPLS bubble clock, fitted on ${fmtDate(ex.forecast_made)} (${ex.days_before_peak} days before the top), put the critical time at ${fmtDate(ex.tc_median)}. The AI-20 peaked on ${fmtDate(ex.peak)}.` +
+      (bias ? ` Across ${bias.n} past bubbles it ran early by ${Math.abs(bias.median)} days (median).` : "")
+    : "No qualified LPPLS bubble fits before the latest peak.";
+
+  // Pillars
+  const P = D.pillars, names = { price_dynamics: "Price dynamics", valuation: "Valuation", fundamentals: "Fundamentals", market_structure: "Market structure", credit_macro: "Credit & macro", sentiment: "AI hype", issuance: "Mega-IPO issuance" };
+  const c = P.valuation.components, fc = P.fundamentals.components, ms = P.market_structure.components, cm = P.credit_macro.components, pd = P.price_dynamics.components, se = P.sentiment.components, is = P.issuance.components;
+  const finding = {
+    price_dynamics: `Two-year run-up higher than ${Math.round(pd.runup_z_pctile)}% of all asset-months since 1927; LPPLS fitted a bubble in up to ${Math.round(pd.lppls_confidence_x100)}% of windows.`,
+    valuation: `Shiller CAPE ${c.cape.toFixed(1)}, above ${Math.round(c.cape_pctile)}% of readings since 1871 (dot-com peak: ${c.cape_dotcom_peak.toFixed(1)}).`,
+    fundamentals: `Hyperscaler capex is ${fc.capex_to_ocf.toFixed(2)}x operating cash flow; NVIDIA's sales imply far more end-user AI revenue than the labs earn today.`,
+    market_structure: `${nBear} of 20 AI leaders in bear markets; S&P concentration at the ${Math.round(ms.concentration_pctile)}th percentile; cross-sector coupling ${ms.absorption_ratio_pctile < 5 ? "near its lowest since 2001" : "at the " + Math.round(ms.absorption_ratio_pctile) + "th percentile"}, so not yet a market-wide crisis.`,
+    credit_macro: `High-yield spread change at the ${Math.round(cm.hy_oas_3m_change_pctile || 0)}th percentile; real yields at the ${Math.round(cm.real_yield_pctile || 0)}th.`,
+    sentiment: `Attention to AI at the ${Math.round(se.wiki_Artificial_intelligence_pctile)}th percentile of the past decade; news on AI spending at a record.`,
+    issuance: `$${Math.round(is.mega_ipo_raised_ttm_b)}B raised in mega-IPOs in 12 months vs a prior record of $${Math.round(is.prior_record_ttm_b)}B, before Anthropic lists.`,
+  };
+  const order = Object.keys(P).sort((a, b) => P[b].score - P[a].score);
+  const nHot = order.filter(k => P[k].score >= 70).length;
+  document.getElementById("pillars-title").textContent = `${Math.round(comp.score)} out of 100: ${words[nHot]}${nHot < 7 ? " of seven" : ""} perspectives in the warning zone`;
+  const pl = document.getElementById("pillars");
+  pl.innerHTML = "";
+  order.forEach(key => {
+    const sc = P[key].score, cls = sc >= 70 ? "warn" : sc >= 50 ? "watch" : "calm", word = sc >= 70 ? "Warning" : sc >= 50 ? "Watch" : "Calm";
+    const color = sc >= 70 ? css("--risk") : css("--context");
+    pl.appendChild(el("div", { class: "pillar" },
+      `<div class="name">${names[key]} <span class="chip ${cls}">${word}</span></div>
+       <div class="track-cell"><div class="track"><div class="fill" style="width:${sc}%;background:${color}"></div><div class="ref" style="left:70%" title="Warning zone starts at 70"></div></div></div>
+       <div class="score">${Math.round(sc)}</div>
+       <div class="finding">${finding[key]}</div>`));
+  });
+
+  // Breadth
+  document.getElementById("breadth-title").textContent = `${nBear} of 20 AI leaders are already in bear markets`;
+  barList(document.getElementById("breadth"), D.breadth.map(b => ({
+    label: b.name, value: -b.dd, color: b.dd <= -0.2 ? css("--risk") : css("--context"), text: Math.round(b.dd * 100) + "%",
+    tip: `${b.name} (${b.layer}): ${Math.round(b.dd * 100)}% from its all-time high`
+  })), { max: 0.8, ref: 0.2 });
+
+  // Backtest
+  const fam = D.famous.slice();
+  const hits = fam.filter(f => f.lift >= 1.5).length;
+  document.getElementById("backtest-title").textContent = `It flagged ${hits} of ${fam.length} past bubble tops at 1.5x+ normal risk`;
+  const clim = fam.reduce((a, f) => a + f.climatology, 0) / fam.length;
+  const rows = fam.map(f => ({ label: f.episode, value: f.p12_at_peak, color: css("--context"), text: pct(f.p12_at_peak), tip: `${f.episode}: ${pct(f.p12_at_peak)} vs base rate ${pct(f.climatology)} (${f.lift.toFixed(1)}x)` }))
+    .concat([{ label: "AI-20 today", value: ai.p12, color: css("--risk"), text: pct(ai.p12), me: true, tip: `AI-20 today: ${pct(ai.p12)}` }])
+    .sort((a, b) => b.value - a.value);
+  barList(document.getElementById("backtest"), rows, { max: 1, ref: clim, refLabel: `Black line: average base rate, ${pct(clim)}.` });
+
+  // Capex
+  const cq = D.capex;
+  const full = cq.filter(q => q.complete);
+  const last = full[full.length - 1];
+  document.getElementById("capex-title").textContent = last.capex_b > last.ocf_b
+    ? `Capex now tops the cash the businesses generate` : `Capex is still covered by operating cash flow`;
+  (function () {
+    const host = document.getElementById("capex"); host.innerHTML = "";
+    const firstIdx = cq.findIndex(q => q.complete);
+    const seq = cq.slice(firstIdx);
+    const W = 560, H = 280, m = { l: 36, r: 8, t: 22, b: 30 };
+    const vmax = Math.max(...full.map(q => Math.max(q.capex_b, q.ocf_b))) * 1.08;
+    const svg = s("svg", { viewBox: `0 0 ${W} ${H}` });
+    const Y = vv => H - m.b - vv / vmax * (H - m.t - m.b);
+    [0, 50, 100, 150, 200, 250].filter(t => t < vmax).forEach(t => {
+      svg.appendChild(s("line", { x1: m.l, x2: W - m.r, y1: Y(t), y2: Y(t), class: t ? "gridline" : "baseline" }));
+      const tx = s("text", { x: m.l - 6, y: Y(t) + 4, "text-anchor": "end" }); tx.textContent = t; svg.appendChild(tx);
+    });
+    const slot = (W - m.l - m.r) / seq.length, bw = Math.min(26, slot * 0.3);
+    const tip = tooltip(host);
+    seq.forEach((q, i) => {
+      const cx = m.l + slot * (i + .5);
+      const lab = s("text", { x: cx, y: H - 10, "text-anchor": "middle" }); lab.textContent = q.quarter.replace(" 20", " '"); svg.appendChild(lab);
+      if (!q.complete) { const t = s("text", { x: cx, y: Y(0) - 10, "text-anchor": "middle" }); t.textContent = "data gap"; svg.appendChild(t); return; }
+      const over = q.capex_b > q.ocf_b;
+      [[q.capex_b, over ? css("--risk") : css("--context"), cx - bw / 2 - 1, "Capex"], [q.ocf_b, css("--context-lt"), cx + bw / 2 + 1, "Operating cash flow"]].forEach(([val, col, x, nm]) => {
+        const r = s("path", { d: `M${x - bw / 2},${Y(0)} V${Y(val) + 4} q0,-4 4,-4 H${x + bw / 2 - 4} q4,0 4,4 V${Y(0)} Z`, fill: col });
+        r.addEventListener("pointerenter", () => { const b = svg.getBoundingClientRect(); tip.innerHTML = `${q.quarter} ${nm}: $${val.toFixed(0)}B`; tip.hidden = false; tip.style.left = (x / W * b.width) + "px"; tip.style.top = (Y(val) / H * b.height) + "px"; });
+        r.addEventListener("pointerleave", () => tip.hidden = true);
+        svg.appendChild(r);
+      });
+      const t1 = s("text", { x: cx - bw / 2 - 1, y: Y(q.capex_b) - 6, "text-anchor": "middle", style: `fill:${css("--ink")};font-weight:700` }); t1.textContent = Math.round(q.capex_b); svg.appendChild(t1);
+      const t2 = s("text", { x: cx + bw / 2 + 1, y: Y(q.ocf_b) - 6, "text-anchor": "middle" }); t2.textContent = Math.round(q.ocf_b); svg.appendChild(t2);
+    });
+    host.appendChild(svg);
+    document.getElementById("capex-legend").innerHTML = `<span><i class="box" style="background:${css("--risk")}"></i>Capex above cash flow</span><span><i class="box" style="background:${css("--context")}"></i>Capex</span><span><i class="box" style="background:${css("--context-lt")}"></i>Operating cash flow</span>`;
+  })();
+
+  // Anthropic
+  const A = D.anthropic, rd = A.reverse_dcf.scenarios, ipo = rd["IPO ($1.5T)"].required_revenue_b;
+  document.getElementById("anthropic-title").textContent = `At $1.5T, Anthropic needs ~$${Math.round(ipo.p50)}B of revenue by ${A.reverse_dcf.target_year}`;
+  document.getElementById("anthropic-dek").textContent = `Revenue needed in ten years to justify each price (median and 80% range of a 20,000-draw reverse DCF), against what today's giants earn. ` +
+    `Run-rate today: ~$${A.run_rate}B; first-half 2026 revenue in the S-1: $${A.s1.revenue_h1_2026_b.toFixed(1)}B.`;
+  (function () {
+    const host = document.getElementById("anthropic"); host.innerHTML = "";
+    const names2 = { AMZN: "Amazon", GOOGL: "Alphabet", MSFT: "Microsoft" };
+    const refs = Object.entries(A.benchmarks).filter(([k]) => names2[k]).map(([k, b]) => [names2[k] + " today", b.revenue_b]).sort((a, b) => b[1] - a[1]);
+    const items = Object.entries(rd);
+    const W = 560, rowH = 34, H = (items.length + refs.length) * rowH + 50, m = { l: 150, r: 64 };
+    const vmax = 1600, X = vv => m.l + vv / vmax * (W - m.l - m.r);
+    const svg = s("svg", { viewBox: `0 0 ${W} ${H}` });
+    [0, 400, 800, 1200, 1600].forEach(t => { svg.appendChild(s("line", { x1: X(t), x2: X(t), y1: 8, y2: H - 24, class: "gridline" })); const tx = s("text", { x: X(t), y: H - 6, "text-anchor": "middle" }); tx.textContent = "$" + t + "B"; svg.appendChild(tx); });
+    const tip = tooltip(host);
+    items.forEach(([name, sc], i) => {
+      const y = 24 + i * rowH, q = sc.required_revenue_b, isIpo = name.startsWith("IPO"), col = isIpo ? css("--risk") : css("--context");
+      const lb = s("text", { x: m.l - 10, y: y + 4, "text-anchor": "end", style: `fill:${css(isIpo ? "--ink" : "--ink2")};font-weight:${isIpo ? 700 : 500}` }); lb.textContent = name; svg.appendChild(lb);
+      svg.appendChild(s("line", { x1: X(q.p10), x2: X(q.p90), y1: y, y2: y, stroke: col, "stroke-width": 8, "stroke-linecap": "round", opacity: .3 }));
+      const dot = s("circle", { cx: X(q.p50), cy: y, r: 6, fill: col, stroke: css("--surface"), "stroke-width": 2 }); svg.appendChild(dot);
+      const tv = s("text", { x: X(q.p90) + 8, y: y + 4, style: `fill:${css("--ink")};font-weight:700` }); tv.textContent = "$" + Math.round(q.p50) + "B"; svg.appendChild(tv);
+      dot.addEventListener("pointerenter", () => { const b = svg.getBoundingClientRect(); tip.innerHTML = `${name}: median $${Math.round(q.p50)}B<br>80% range $${Math.round(q.p10)}B to $${Math.round(q.p90)}B<br>CAGR ${pct(sc.required_cagr.p50)} for 10 years`; tip.hidden = false; tip.style.left = (X(q.p50) / W * b.width) + "px"; tip.style.top = (y / H * b.height) + "px"; });
+      dot.addEventListener("pointerleave", () => tip.hidden = true);
+    });
+    const y0 = 24 + items.length * rowH;
+    svg.appendChild(s("line", { x1: 8, x2: W - 8, y1: y0 - 14, y2: y0 - 14, class: "gridline" }));
+    refs.forEach(([n, v2], j) => {
+      const y = y0 + 6 + j * rowH;
+      const lb = s("text", { x: m.l - 10, y: y + 4, "text-anchor": "end" }); lb.textContent = n; svg.appendChild(lb);
+      svg.appendChild(s("rect", { x: X(0), y: y - 6, width: X(v2) - X(0), height: 12, rx: 3, fill: css("--context-lt") }));
+      const tv = s("text", { x: X(v2) + 8, y: y + 4 }); tv.textContent = "$" + Math.round(v2) + "B"; svg.appendChild(tv);
+    });
+    host.appendChild(svg);
+  })();
+
+  // Clock
+  const cl = D.clock;
+  document.getElementById("clock-title").textContent = `The Nasdaq-100 is up ${cl.ndx_multiple_since_chatgpt.toFixed(1)}x since ChatGPT; it was up ${cl.ndx_multiple_at_dotcom_peak.toFixed(1)}x at the 2000 peak`;
+  (function () {
+    // Monthly series reconstructed from the daily AI-20 / Nasdaq-100 since ChatGPT, plus the dot-com path.
+    const toMonths = (xs, anchor) => xs.map(d => (new Date(d + "T00:00:00") - new Date(anchor + "T00:00:00")) / (86400000 * 30.4375));
+    const aiM = toMonths(D.ai20.x, "2022-11-30"), ndxM = toMonths(D.ndx.x, "2022-11-30");
+    const dot = D.dotcom || null;
+    const series = [];
+    if (dot) series.push({ x: dot.months, y: dot.level, color: css("--context"), width: 2.2, label: "Nasdaq-100 after Netscape", endText: "Nasdaq-100, 1995-2003" });
+    series.push({ x: ndxM, y: D.ndx.price, color: css("--compare"), width: 2.8, label: "Nasdaq-100 after ChatGPT", endText: `Nasdaq-100 ${cl.ndx_multiple_since_chatgpt.toFixed(1)}x`, bold: true });
+    series.push({ x: aiM, y: D.ai20.price, color: css("--ink"), width: 2, label: "AI-20 after ChatGPT", endText: `AI-20 ${cl.ai20_multiple_now.toFixed(1)}x`, labelLeft: true, labelDy: 18 });
+    lineChart(document.getElementById("clock"), {
+      series, xMin: 0, xMax: 96, yMin: 70, yMax: 1100, log: true,
+      xTicks: [0, 12, 24, 36, 48, 60, 72, 84, 96], yTicks: [100, 200, 400, 800], xFmt: mm => mm ? (mm / 12) + " yr" : "Catalyst", yFmt: vv => vv,
+      tipFmt: (mm, vals) => `<b>Month ${Math.round(mm)}</b><br>` + vals.filter(([, y]) => y != null).map(([l, y]) => `${l}: ${(y / 100).toFixed(2)}x`).join("<br>")
+    });
+    document.getElementById("clock-legend").innerHTML = `<span><i style="background:${css("--context")}"></i>Nasdaq-100 after the Netscape IPO</span><span><i style="background:${css("--compare")}"></i>Nasdaq-100 after ChatGPT</span><span><i style="background:${css("--ink")}"></i>AI-20 after ChatGPT (hindsight basket)</span>`;
+  })();
+  const an = D.analogs;
+  document.getElementById("analog-note").textContent = `Historical analogs: matched against ${an.n_analogs} past bubbles, ${pct(an.share_past_peak)} of the fit-weighted evidence places the AI-20 just past its peak; ` +
+    `in those analogs the subsequent fall had a median of ${pct(-an.drawdown_ahead_weighted_median)}. The dot-com calendar alone would put the equivalent top at ${fmtDate(cl.calendar_equivalent_peak)}.`;
+
+  // Skill table
+  const sk = D.skill.burst, nm = { p_ens: "ICARUS ensemble", p_logit: "Logistic regression", p_gbm: "Gradient boosting" };
+  let html = `<thead><tr><th>Horizon</th><th>Model</th><th class="n">AUC</th><th class="n">Brier skill vs base rate</th></tr></thead><tbody>`;
+  [["h3", "3 months"], ["h12", "12 months"], ["h24", "24 months"]].forEach(([h, label]) => ["p_ens", "p_logit", "p_gbm"].forEach((key, j) => {
+    const r = sk[h][key]; html += `<tr><td>${j ? "" : label}</td><td${key === "p_ens" ? ' style="font-weight:700"' : ""}>${nm[key]}</td><td class="n">${r.auc.toFixed(3)}</td><td class="n">${(r.brier_skill_vs_climatology * 100).toFixed(1)}%</td></tr>`;
+  }));
+  document.getElementById("skill").innerHTML = html + `</tbody>`;
+}
+
+render();
+// Chart colors are read from the theme tokens, so redraw when the theme changes.
+matchMedia("(prefers-color-scheme: dark)").addEventListener("change", render);
+new MutationObserver(render).observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
+</script>

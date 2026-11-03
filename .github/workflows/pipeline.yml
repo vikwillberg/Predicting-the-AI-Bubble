@@ -1,7 +1,8 @@
 name: ICARUS pipeline
 
-# Scrapes fresh market, macro, fundamental and attention data, validates it,
-# re-runs every model and commits the updated forecast, figures and dashboard.
+# Every week: scrape fresh market, macro, fundamental and attention data, run the
+# quality gate, rebuild the SQL warehouse, rerun every model, and commit the new
+# forecast, figures, dashboard and README results block.
 
 on:
   push:
@@ -14,13 +15,8 @@ on:
       - "requirements.txt"
       - ".github/workflows/pipeline.yml"
   schedule:
-    - cron: "27 22 * * 1-5"   # weekdays 22:27 UTC, after the US close
+    - cron: "27 22 * * 1"   # Mondays 22:27 UTC, after the US close
   workflow_dispatch:
-    inputs:
-      skip_ingest:
-        description: "Reuse the committed data snapshot instead of scraping"
-        type: boolean
-        default: false
 
 permissions:
   contents: write
@@ -44,23 +40,42 @@ jobs:
           python-version: "3.13"
           cache: pip
 
+      - uses: actions/setup-go@v5
+        with:
+          go-version: "1.24"
+          cache: false
+
       - name: Install Python dependencies
         run: pip install -r requirements.txt
 
+      - name: Build the Go LPPLS engine
+        run: cd engine && go build -o ../bin/lppls ./cmd/lppls
+
       - name: Scrape data
-        if: ${{ !inputs.skip_ingest }}
         run: python -m icarus ingest
 
       - name: Validate data
         run: python -m icarus validate
 
-      - name: Commit snapshot
+      - name: Warehouse, models and report
+        run: python -m icarus all
+
+      - name: Upload the data snapshot
+        uses: actions/upload-artifact@v4
+        with:
+          name: icarus-data-${{ github.run_id }}
+          path: |
+            data/raw
+            reports/results.json
+          retention-days: 90
+
+      - name: Commit results
         run: |
           git config user.name "icarus-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/raw
+          git add reports docs README.md data/raw/manifest.json data/raw/validation_report.json
           if git diff --cached --quiet; then echo "Nothing changed"; exit 0; fi
-          git commit -m "data: refresh snapshot $(date -u +%F)"
+          git commit -m "pipeline: refresh forecast ($(date -u +%F))"
           for i in 1 2 3 4; do
             git pull --rebase origin "${GITHUB_REF_NAME}" && git push origin "HEAD:${GITHUB_REF_NAME}" && exit 0
             sleep $((i * 5))

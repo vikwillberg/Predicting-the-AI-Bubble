@@ -22,10 +22,19 @@ log = logging.getLogger(__name__)
 COLUMNS = ["date", "ticker", "open", "high", "low", "close", "adj_close", "volume", "split_factor", "source"]
 
 
+# Markets that close before 14:00 UTC (Asia) have a final bar by any daytime scrape.
+EARLY_CLOSE_SUFFIXES = (".SS", ".HK", ".T", ".KS", ".TW")
+EARLY_CLOSE_INDICES = {"^N225", "^HSI", "^TWII", "^KS11", "^BSESN", "000001.SS"}
+
+
 def drop_unfinished_session(df: pd.DataFrame, now: pd.Timestamp | None = None) -> pd.DataFrame:
     """Drop today's bar if the scrape runs before the US close (21:00 UTC), so an
-    intraday print is never treated as a closing price."""
+    intraday print is never treated as a closing price. Asian markets that have
+    already closed keep their bar."""
     now = now or pd.Timestamp.now(tz="UTC")
+    if len(df) and (df["ticker"].iloc[0] in EARLY_CLOSE_INDICES
+                    or str(df["ticker"].iloc[0]).endswith(EARLY_CLOSE_SUFFIXES)) and now.hour >= 10:
+        return df
     if now.hour < 21:
         today = now.tz_localize(None).normalize() if now.tzinfo else now.normalize()
         df = df[df["date"] < today]

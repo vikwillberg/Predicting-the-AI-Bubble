@@ -28,6 +28,14 @@ def test_yahoo_normaliser_tz_splits_and_duplicates():
     assert df["close"].iloc[1] == 121.5                 # last duplicate wins
 
 
+def test_unfinished_session_rule():
+    df = pd.DataFrame({"date": pd.to_datetime(["2026-11-02", "2026-11-03"]), "ticker": "NVDA"})
+    morning = pd.Timestamp("2026-11-03 14:38", tz="UTC")
+    assert len(prices.drop_unfinished_session(df, morning)) == 1
+    assert len(prices.drop_unfinished_session(df, pd.Timestamp("2026-11-03 22:30", tz="UTC"))) == 2
+    assert len(prices.drop_unfinished_session(df.assign(ticker="^N225"), morning)) == 2
+
+
 def test_companyfacts_flattening_keeps_usd_only():
     payload = {"cik": 1045810, "facts": {"us-gaap": {
         "PaymentsToAcquirePropertyPlantAndEquipment": {"units": {"USD": [
