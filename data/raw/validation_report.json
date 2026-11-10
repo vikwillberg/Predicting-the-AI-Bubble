@@ -7,7 +7,7 @@
     {
       "check": "non_empty",
       "ok": true,
-      "detail": "662400 rows",
+      "detail": "660621 rows",
       "severity": "error"
     },
     {
@@ -37,7 +37,7 @@
     {
       "check": "no_future_dates",
       "ok": true,
-      "detail": "max date 2026-11-03",
+      "detail": "max date 2026-11-09",
       "severity": "error"
     },
     {
@@ -103,25 +103,25 @@
     {
       "check": "fred_range:DGS10",
       "ok": true,
-      "detail": "n=16193 range [0.52, 15.84]",
+      "detail": "n=16198 range [0.52, 15.84]",
       "severity": "warning"
     },
     {
       "check": "fred_range:BAA10Y",
       "ok": true,
-      "detail": "n=10208 range [1.16, 6.16]",
+      "detail": "n=10213 range [1.16, 6.16]",
       "severity": "warning"
     },
     {
       "check": "fred_range:VIXCLS",
       "ok": true,
-      "detail": "n=9308 range [9.14, 82.69]",
+      "detail": "n=9312 range [9.14, 82.69]",
       "severity": "warning"
     },
     {
       "check": "fred_range:DFF",
       "ok": true,
-      "detail": "n=26420 range [0.04, 22.36]",
+      "detail": "n=26427 range [0.04, 22.36]",
       "severity": "warning"
     }
   ]
