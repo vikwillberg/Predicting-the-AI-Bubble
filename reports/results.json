@@ -1,6 +1,6 @@
 {
-  "generated_utc": "2026-11-10T04:22:55+00:00",
-  "data_as_of": "2026-11-09",
+  "generated_utc": "2026-11-17T04:48:52+00:00",
+  "data_as_of": "2026-11-16",
   "fast_mode": false,
   "settings": {
     "events": {
@@ -66,136 +66,136 @@
       "metrics": {
         "overall": {
           "p_gbm": {
-            "auc": 0.836926,
-            "brier": 0.112203,
-            "brier_skill_vs_climatology": 0.136778,
-            "log_loss": 0.370138,
+            "auc": 0.837077,
+            "brier": 0.111821,
+            "brier_skill_vs_climatology": 0.139716,
+            "log_loss": 0.368992,
             "n": 56688,
             "positives": 9656
           },
           "p_logit": {
-            "auc": 0.862967,
+            "auc": 0.862959,
             "brier": 0.101212,
             "brier_skill_vs_climatology": 0.221335,
-            "log_loss": 0.323995,
+            "log_loss": 0.323996,
             "n": 56688,
             "positives": 9656
           },
           "p_raw": {
-            "auc": 0.859332,
-            "brier": 0.102902,
-            "brier_skill_vs_climatology": 0.208335,
-            "log_loss": 0.329312,
+            "auc": 0.859382,
+            "brier": 0.102735,
+            "brier_skill_vs_climatology": 0.209618,
+            "log_loss": 0.328922,
             "n": 56688,
             "positives": 9656
           },
           "p_ens": {
-            "auc": 0.86314,
-            "brier": 0.101256,
-            "brier_skill_vs_climatology": 0.221,
-            "log_loss": 0.32375,
+            "auc": 0.863134,
+            "brier": 0.101177,
+            "brier_skill_vs_climatology": 0.221603,
+            "log_loss": 0.323587,
             "n": 56688,
             "positives": 9656
           }
         },
         "h3": {
           "p_gbm": {
-            "auc": 0.845959,
-            "brier": 0.048973,
-            "brier_skill_vs_climatology": 0.19615,
-            "log_loss": 0.186876,
+            "auc": 0.846101,
+            "brier": 0.048893,
+            "brier_skill_vs_climatology": 0.197465,
+            "log_loss": 0.186506,
             "n": 7281,
             "positives": 471
           },
           "p_logit": {
-            "auc": 0.875389,
-            "brier": 0.047001,
-            "brier_skill_vs_climatology": 0.228517,
-            "log_loss": 0.17114,
+            "auc": 0.875359,
+            "brier": 0.047004,
+            "brier_skill_vs_climatology": 0.228467,
+            "log_loss": 0.171154,
             "n": 7281,
             "positives": 471
           },
           "p_raw": {
-            "auc": 0.874101,
-            "brier": 0.045942,
-            "brier_skill_vs_climatology": 0.245906,
-            "log_loss": 0.167981,
+            "auc": 0.8741,
+            "brier": 0.045917,
+            "brier_skill_vs_climatology": 0.246318,
+            "log_loss": 0.167959,
             "n": 7281,
             "positives": 471
           },
           "p_ens": {
-            "auc": 0.875521,
-            "brier": 0.045915,
-            "brier_skill_vs_climatology": 0.246354,
-            "log_loss": 0.167319,
+            "auc": 0.875319,
+            "brier": 0.045921,
+            "brier_skill_vs_climatology": 0.246246,
+            "log_loss": 0.167379,
             "n": 7281,
             "positives": 471
           }
         },
         "h12": {
           "p_gbm": {
-            "auc": 0.732763,
-            "brier": 0.162702,
-            "brier_skill_vs_climatology": 0.11264,
-            "log_loss": 0.53412,
+            "auc": 0.732112,
+            "brier": 0.162307,
+            "brier_skill_vs_climatology": 0.114792,
+            "log_loss": 0.533342,
             "n": 6997,
             "positives": 1611
           },
           "p_logit": {
-            "auc": 0.779868,
-            "brier": 0.14192,
-            "brier_skill_vs_climatology": 0.225984,
-            "log_loss": 0.449206,
+            "auc": 0.779854,
+            "brier": 0.141921,
+            "brier_skill_vs_climatology": 0.225979,
+            "log_loss": 0.44921,
             "n": 6997,
             "positives": 1611
           },
           "p_raw": {
-            "auc": 0.766728,
-            "brier": 0.147708,
-            "brier_skill_vs_climatology": 0.194416,
-            "log_loss": 0.468605,
+            "auc": 0.766497,
+            "brier": 0.14752,
+            "brier_skill_vs_climatology": 0.195441,
+            "log_loss": 0.468305,
             "n": 6997,
             "positives": 1611
           },
           "p_ens": {
-            "auc": 0.775203,
-            "brier": 0.144172,
-            "brier_skill_vs_climatology": 0.2137,
-            "log_loss": 0.456836,
+            "auc": 0.775032,
+            "brier": 0.144081,
+            "brier_skill_vs_climatology": 0.214195,
+            "log_loss": 0.456735,
             "n": 6997,
             "positives": 1611
           }
         },
         "h24": {
           "p_gbm": {
-            "auc": 0.703556,
-            "brier": 0.22584,
-            "brier_skill_vs_climatology": 0.141494,
-            "log_loss": 0.682387,
+            "auc": 0.704676,
+            "brier": 0.22484,
+            "brier_skill_vs_climatology": 0.145293,
+            "log_loss": 0.679057,
             "n": 6655,
             "positives": 2734
           },
           "p_logit": {
-            "auc": 0.74218,
-            "brier": 0.204986,
-            "brier_skill_vs_climatology": 0.220766,
-            "log_loss": 0.607967,
+            "auc": 0.742198,
+            "brier": 0.204972,
+            "brier_skill_vs_climatology": 0.22082,
+            "log_loss": 0.607919,
             "n": 6655,
             "positives": 2734
           },
           "p_raw": {
-            "auc": 0.735466,
-            "brier": 0.207221,
-            "brier_skill_vs_climatology": 0.212272,
-            "log_loss": 0.614267,
+            "auc": 0.736037,
+            "brier": 0.206796,
+            "brier_skill_vs_climatology": 0.213887,
+            "log_loss": 0.612955,
             "n": 6655,
             "positives": 2734
           },
           "p_ens": {
-            "auc": 0.743585,
-            "brier": 0.203976,
-            "brier_skill_vs_climatology": 0.224607,
-            "log_loss": 0.604351,
+            "auc": 0.743881,
+            "brier": 0.20376,
+            "brier_skill_vs_climatology": 0.225427,
+            "log_loss": 0.603707,
             "n": 6655,
             "positives": 2734
           }
@@ -207,531 +207,531 @@
           "episode": "Nasdaq-100 2000",
           "ticker": "^NDX",
           "peak": "2000-03-27",
-          "p12_at_peak": 0.275931,
+          "p12_at_peak": 0.288936,
           "climatology": 0.132928,
-          "lift": 2.075789,
-          "p12_24m_before": 0.017283
+          "lift": 2.173623,
+          "p12_24m_before": 0.016822
         },
         {
           "episode": "Semiconductors 2000",
           "ticker": "^SOX",
           "peak": "2000-03-10",
-          "p12_at_peak": 0.436095,
+          "p12_at_peak": 0.441271,
           "climatology": 0.132928,
-          "lift": 3.280677,
-          "p12_24m_before": 0.20771
+          "lift": 3.319616,
+          "p12_24m_before": 0.205168
         },
         {
           "episode": "Cisco 2000",
           "ticker": "CSCO",
           "peak": "2000-03-27",
-          "p12_at_peak": 0.284451,
+          "p12_at_peak": 0.286456,
           "climatology": 0.132928,
-          "lift": 2.139883,
-          "p12_24m_before": 0.032604
+          "lift": 2.15496,
+          "p12_24m_before": 0.03153
         },
         {
           "episode": "Shanghai 2007",
           "ticker": "000001.SS",
           "peak": "2007-10-16",
-          "p12_at_peak": 0.092391,
+          "p12_at_peak": 0.093686,
           "climatology": 0.183649,
-          "lift": 0.503085,
-          "p12_24m_before": 0.078555
+          "lift": 0.510139,
+          "p12_24m_before": 0.079046
         },
         {
           "episode": "Oil 2008",
           "ticker": "CL=F",
           "peak": "2008-07-03",
-          "p12_at_peak": 0.277389,
+          "p12_at_peak": 0.278121,
           "climatology": 0.182896,
-          "lift": 1.51665,
-          "p12_24m_before": 0.080899
+          "lift": 1.520651,
+          "p12_24m_before": 0.082277
         },
         {
           "episode": "Bitcoin 2017",
           "ticker": "BTC-USD",
           "peak": "2017-12-16",
-          "p12_at_peak": 0.995767,
+          "p12_at_peak": 0.995336,
           "climatology": 0.206274,
-          "lift": 4.827401,
-          "p12_24m_before": 0.811642
+          "lift": 4.825311,
+          "p12_24m_before": 0.799522
         },
         {
           "episode": "ARK Innovation 2021",
           "ticker": "ARKK",
           "peak": "2021-02-12",
-          "p12_at_peak": 0.635295,
+          "p12_at_peak": 0.656491,
           "climatology": 0.198168,
-          "lift": 3.205846,
-          "p12_24m_before": 0.107803
+          "lift": 3.312805,
+          "p12_24m_before": 0.109586
         },
         {
           "episode": "NVIDIA 2021",
           "ticker": "NVDA",
           "peak": "2021-11-29",
-          "p12_at_peak": 0.409851,
+          "p12_at_peak": 0.432783,
           "climatology": 0.198168,
-          "lift": 2.068205,
-          "p12_24m_before": 0.417629
+          "lift": 2.183926,
+          "p12_24m_before": 0.419991
         },
         {
           "episode": "Bitcoin 2021",
           "ticker": "BTC-USD",
           "peak": "2021-11-08",
-          "p12_at_peak": 0.867853,
+          "p12_at_peak": 0.863098,
           "climatology": 0.198168,
-          "lift": 4.379389,
-          "p12_24m_before": 0.567679
+          "lift": 4.355397,
+          "p12_24m_before": 0.566077
         }
       ],
       "targets": {
         "AI20": {
           "name": "ICARUS AI-20",
-          "as_of": "2026-11-09",
-          "drawdown_from_peak": -0.201113,
+          "as_of": "2026-11-16",
+          "drawdown_from_peak": -0.227935,
           "worst_drawdown_since_peak": -0.271902,
           "peak_date": "2026-10-06",
           "already_happened": false,
           "cdf": [
-            0.019935,
-            0.051099,
-            0.086921,
-            0.114691,
-            0.180202,
-            0.208186,
-            0.235489,
-            0.294276,
-            0.319495,
-            0.3435,
-            0.381503,
-            0.403016,
-            0.42331,
-            0.44243,
-            0.460426,
-            0.493363,
-            0.509291,
-            0.524277,
-            0.538379,
-            0.551656,
-            0.564162,
-            0.598361,
-            0.609479,
-            0.619973
+            0.030144,
+            0.07581,
+            0.126327,
+            0.167548,
+            0.237504,
+            0.275217,
+            0.31036,
+            0.370234,
+            0.40006,
+            0.427382,
+            0.464794,
+            0.487643,
+            0.508541,
+            0.527671,
+            0.545203,
+            0.580005,
+            0.594797,
+            0.608418,
+            0.620982,
+            0.632592,
+            0.64334,
+            0.674334,
+            0.683593,
+            0.692209
           ],
-          "p3": 0.086921,
-          "p6": 0.208186,
-          "p12": 0.403016,
-          "p24": 0.619973,
-          "median_months": 17,
+          "p3": 0.126327,
+          "p6": 0.275217,
+          "p12": 0.487643,
+          "p24": 0.692209,
+          "median_months": 13,
           "cdf_p10": [
-            0.011426,
-            0.028799,
-            0.050359,
-            0.070231,
-            0.111336,
-            0.132986,
-            0.154849,
-            0.196238,
-            0.217714,
-            0.238729,
-            0.272313,
-            0.292097,
-            0.311176,
-            0.329522,
-            0.347122,
-            0.395779,
-            0.412117,
-            0.427746,
-            0.44268,
-            0.456941,
-            0.470552,
-            0.496025,
-            0.508202,
-            0.519991
+            0.018273,
+            0.046605,
+            0.080461,
+            0.110126,
+            0.162758,
+            0.192822,
+            0.223043,
+            0.273385,
+            0.301366,
+            0.327945,
+            0.36722,
+            0.390844,
+            0.413009,
+            0.433765,
+            0.453178,
+            0.487734,
+            0.504643,
+            0.520475,
+            0.5353,
+            0.549188,
+            0.562203,
+            0.595365,
+            0.60682,
+            0.617578
           ],
           "cdf_p90": [
-            0.021926,
-            0.056283,
-            0.101083,
-            0.135415,
-            0.211437,
-            0.248091,
-            0.28336,
-            0.355135,
-            0.383774,
-            0.410431,
-            0.452436,
-            0.47528,
-            0.496436,
-            0.516022,
-            0.534161,
-            0.580522,
-            0.599144,
-            0.616369,
-            0.632304,
-            0.647048,
-            0.6607,
-            0.691598,
-            0.703327,
-            0.714214
+            0.033515,
+            0.085256,
+            0.150296,
+            0.203417,
+            0.290123,
+            0.334258,
+            0.372911,
+            0.446494,
+            0.479745,
+            0.509412,
+            0.547376,
+            0.57098,
+            0.592074,
+            0.610966,
+            0.627927,
+            0.657762,
+            0.671512,
+            0.683954,
+            0.695243,
+            0.705513,
+            0.714883,
+            0.741981,
+            0.750569,
+            0.758597
           ],
           "p12_interval": [
-            0.292097,
-            0.47528
+            0.390844,
+            0.57098
           ],
           "p24_interval": [
-            0.519991,
-            0.714214
+            0.617578,
+            0.758597
           ],
           "drivers_h12": [
             {
               "feature": "horizon",
               "label": "Forecast horizon (months)",
-              "log_odds": 1.059907,
+              "log_odds": 1.003846,
               "value": null
             },
             {
               "feature": "dd_12m_high",
               "label": "Drawdown from 12-month high",
-              "log_odds": 0.565157,
-              "value": -0.201113
+              "log_odds": 0.559758,
+              "value": -0.227935
             },
             {
               "feature": "vol_12m",
               "label": "12-month volatility",
-              "log_odds": 0.401133,
-              "value": 0.382454
+              "log_odds": 0.299199,
+              "value": 0.386337
             },
             {
               "feature": "vol_3m",
               "label": "3-month volatility",
-              "log_odds": 0.283626,
-              "value": 0.421482
+              "log_odds": 0.284548,
+              "value": 0.442852
             },
             {
               "feature": "dd",
               "label": "Drawdown from all-time high",
-              "log_odds": 0.178884,
-              "value": -0.201113
-            },
-            {
-              "feature": "runup_24m",
-              "label": "Run-up from 2-year low",
-              "log_odds": 0.164324,
-              "value": 1.580212
-            },
-            {
-              "feature": "vol_5y",
-              "label": "5-year volatility",
-              "log_odds": 0.128667,
-              "value": 0.352104
+              "log_odds": 0.262331,
+              "value": -0.227935
             },
             {
               "feature": "skew_12m",
               "label": "Return skewness (12m)",
-              "log_odds": 0.112017,
-              "value": -0.481382
+              "log_odds": 0.128014,
+              "value": -0.440854
+            },
+            {
+              "feature": "vol_5y",
+              "label": "5-year volatility",
+              "log_odds": 0.112513,
+              "value": 0.353673
+            },
+            {
+              "feature": "r_24m",
+              "label": "24-month return",
+              "log_odds": -0.073405,
+              "value": 0.714648
             }
           ]
         },
         "^NDX": {
           "name": "Nasdaq-100",
-          "as_of": "2026-11-09",
-          "drawdown_from_peak": -0.106226,
+          "as_of": "2026-11-16",
+          "drawdown_from_peak": -0.12898,
           "worst_drawdown_since_peak": -0.147149,
           "peak_date": "2026-10-06",
           "already_happened": false,
           "cdf": [
-            0.00351,
-            0.008751,
-            0.015238,
-            0.020327,
-            0.031909,
-            0.037832,
-            0.044062,
-            0.058543,
-            0.065234,
-            0.072097,
-            0.093858,
-            0.100976,
-            0.108183,
-            0.115458,
-            0.122784,
-            0.160524,
-            0.167902,
-            0.175285,
-            0.182663,
-            0.190025,
-            0.197361,
-            0.234951,
-            0.242212,
-            0.249426
+            0.005538,
+            0.013084,
+            0.022089,
+            0.029216,
+            0.042811,
+            0.051004,
+            0.059563,
+            0.076507,
+            0.085571,
+            0.094799,
+            0.113667,
+            0.123093,
+            0.132563,
+            0.14205,
+            0.151527,
+            0.188517,
+            0.197914,
+            0.207244,
+            0.216494,
+            0.225653,
+            0.23471,
+            0.272717,
+            0.281546,
+            0.290252
           ],
-          "p3": 0.015238,
-          "p6": 0.037832,
-          "p12": 0.100976,
-          "p24": 0.249426,
+          "p3": 0.022089,
+          "p6": 0.051004,
+          "p12": 0.123093,
+          "p24": 0.290252,
           "median_months": null
         },
         "SMH": {
           "name": "Semiconductors (SMH)",
-          "as_of": "2026-11-09",
-          "drawdown_from_peak": -0.271337,
+          "as_of": "2026-11-16",
+          "drawdown_from_peak": -0.309474,
           "worst_drawdown_since_peak": -0.330657,
           "peak_date": "2026-06-22",
           "already_happened": false,
           "cdf": [
-            0.057813,
-            0.143864,
-            0.220413,
-            0.27465,
-            0.364617,
-            0.409133,
-            0.448674,
-            0.527181,
-            0.558076,
-            0.585394,
-            0.620978,
-            0.642484,
-            0.661652,
-            0.678793,
-            0.694173,
-            0.721425,
-            0.733934,
-            0.745271,
-            0.755577,
-            0.764974,
-            0.773567,
-            0.793549,
-            0.800793,
-            0.807468
+            0.121335,
+            0.252311,
+            0.353907,
+            0.423785,
+            0.514558,
+            0.562315,
+            0.601752,
+            0.663118,
+            0.690553,
+            0.713716,
+            0.741737,
+            0.758656,
+            0.773282,
+            0.786016,
+            0.797173,
+            0.817694,
+            0.826413,
+            0.834182,
+            0.841139,
+            0.847395,
+            0.853045,
+            0.864245,
+            0.868906,
+            0.87316
           ],
-          "p3": 0.220413,
-          "p6": 0.409133,
-          "p12": 0.642484,
-          "p24": 0.807468,
-          "median_months": 8
+          "p3": 0.353907,
+          "p6": 0.562315,
+          "p12": 0.758656,
+          "p24": 0.87316,
+          "median_months": 5
         },
         "NVDA": {
           "name": "NVIDIA",
-          "as_of": "2026-11-09",
-          "drawdown_from_peak": -0.253177,
-          "worst_drawdown_since_peak": -0.253177,
+          "as_of": "2026-11-16",
+          "drawdown_from_peak": -0.34735,
+          "worst_drawdown_since_peak": -0.34735,
           "peak_date": "2026-10-06",
           "already_happened": false,
           "cdf": [
-            0.055023,
-            0.134288,
-            0.215188,
-            0.273087,
-            0.369098,
-            0.41498,
-            0.455138,
-            0.533595,
-            0.564218,
-            0.591025,
-            0.624715,
-            0.645471,
-            0.663844,
-            0.680173,
-            0.694745,
-            0.71695,
-            0.728692,
-            0.73929,
-            0.74889,
-            0.757615,
-            0.765569,
-            0.783322,
-            0.789992,
-            0.796124
+            0.20044,
+            0.356222,
+            0.466797,
+            0.541618,
+            0.624319,
+            0.669587,
+            0.705373,
+            0.748255,
+            0.771596,
+            0.790832,
+            0.814644,
+            0.82818,
+            0.839713,
+            0.849627,
+            0.85822,
+            0.867564,
+            0.87416,
+            0.879994,
+            0.885183,
+            0.889822,
+            0.89399,
+            0.904464,
+            0.90787,
+            0.910967
           ],
-          "p3": 0.215188,
-          "p6": 0.41498,
-          "p12": 0.645471,
-          "p24": 0.796124,
-          "median_months": 8
+          "p3": 0.466797,
+          "p6": 0.669587,
+          "p12": 0.82818,
+          "p24": 0.910967,
+          "median_months": 4
         },
         "^GSPC": {
           "name": "S&P 500",
-          "as_of": "2026-11-09",
-          "drawdown_from_peak": -0.034402,
+          "as_of": "2026-11-16",
+          "drawdown_from_peak": -0.051457,
           "worst_drawdown_since_peak": -0.059497,
           "peak_date": "2026-10-06",
           "already_happened": false,
           "cdf": [
-            0.001575,
-            0.003951,
-            0.006791,
-            0.008845,
-            0.014573,
-            0.017007,
-            0.019593,
-            0.025797,
-            0.028635,
-            0.031579,
-            0.042499,
-            0.045625,
-            0.04883,
-            0.052106,
-            0.055445,
-            0.080376,
-            0.083827,
-            0.087326,
-            0.090869,
-            0.09445,
-            0.098066,
-            0.12344,
-            0.127116,
-            0.130816
+            0.001969,
+            0.004661,
+            0.007921,
+            0.010443,
+            0.017095,
+            0.020075,
+            0.023236,
+            0.031389,
+            0.034846,
+            0.038427,
+            0.051473,
+            0.055261,
+            0.059136,
+            0.063089,
+            0.067112,
+            0.087099,
+            0.091238,
+            0.095426,
+            0.099656,
+            0.103924,
+            0.108224,
+            0.129978,
+            0.134329,
+            0.1387
           ],
-          "p3": 0.006791,
-          "p6": 0.017007,
-          "p12": 0.045625,
-          "p24": 0.130816,
+          "p3": 0.007921,
+          "p6": 0.020075,
+          "p12": 0.055261,
+          "p24": 0.1387,
           "median_months": null
         }
       },
       "n_rows": 73576,
       "n_series": 66,
       "n_events": 186,
-      "seconds": 147.5
+      "seconds": 130.8
     },
     "bear": {
       "threshold": 0.2,
       "metrics": {
         "overall": {
           "p_gbm": {
-            "auc": 0.847277,
-            "brier": 0.161323,
-            "brier_skill_vs_climatology": 0.130108,
-            "log_loss": 0.495592,
+            "auc": 0.846841,
+            "brier": 0.161413,
+            "brier_skill_vs_climatology": 0.128874,
+            "log_loss": 0.49552,
             "n": 37652,
             "positives": 16224
           },
           "p_logit": {
-            "auc": 0.857315,
-            "brier": 0.153653,
-            "brier_skill_vs_climatology": 0.171466,
-            "log_loss": 0.468781,
+            "auc": 0.857183,
+            "brier": 0.153639,
+            "brier_skill_vs_climatology": 0.170828,
+            "log_loss": 0.468795,
             "n": 37652,
             "positives": 16224
           },
           "p_raw": {
-            "auc": 0.859731,
-            "brier": 0.152528,
-            "brier_skill_vs_climatology": 0.177531,
-            "log_loss": 0.463015,
+            "auc": 0.859312,
+            "brier": 0.152662,
+            "brier_skill_vs_climatology": 0.176101,
+            "log_loss": 0.46335,
             "n": 37652,
             "positives": 16224
           },
           "p_ens": {
-            "auc": 0.859071,
-            "brier": 0.152932,
-            "brier_skill_vs_climatology": 0.175353,
-            "log_loss": 0.463919,
+            "auc": 0.857487,
+            "brier": 0.15379,
+            "brier_skill_vs_climatology": 0.170014,
+            "log_loss": 0.467307,
             "n": 37652,
             "positives": 16224
           }
         },
         "h3": {
           "p_gbm": {
-            "auc": 0.748318,
-            "brier": 0.146968,
-            "brier_skill_vs_climatology": 0.140478,
-            "log_loss": 0.468474,
+            "auc": 0.745901,
+            "brier": 0.14796,
+            "brier_skill_vs_climatology": 0.134321,
+            "log_loss": 0.470509,
             "n": 4775,
             "positives": 1030
           },
           "p_logit": {
-            "auc": 0.761891,
-            "brier": 0.144988,
-            "brier_skill_vs_climatology": 0.152056,
-            "log_loss": 0.454873,
+            "auc": 0.761925,
+            "brier": 0.145068,
+            "brier_skill_vs_climatology": 0.151243,
+            "log_loss": 0.455023,
             "n": 4775,
             "positives": 1030
           },
           "p_raw": {
-            "auc": 0.764417,
-            "brier": 0.142518,
-            "brier_skill_vs_climatology": 0.1665,
-            "log_loss": 0.447218,
+            "auc": 0.762825,
+            "brier": 0.143067,
+            "brier_skill_vs_climatology": 0.16295,
+            "log_loss": 0.448605,
             "n": 4775,
             "positives": 1030
           },
           "p_ens": {
-            "auc": 0.76482,
-            "brier": 0.143362,
-            "brier_skill_vs_climatology": 0.161564,
-            "log_loss": 0.447734,
+            "auc": 0.762723,
+            "brier": 0.144364,
+            "brier_skill_vs_climatology": 0.155359,
+            "log_loss": 0.450485,
             "n": 4775,
             "positives": 1030
           }
         },
         "h12": {
           "p_gbm": {
-            "auc": 0.730584,
-            "brier": 0.216238,
-            "brier_skill_vs_climatology": 0.132457,
-            "log_loss": 0.642525,
+            "auc": 0.729876,
+            "brier": 0.216037,
+            "brier_skill_vs_climatology": 0.131952,
+            "log_loss": 0.641383,
             "n": 4663,
             "positives": 2808
           },
           "p_logit": {
-            "auc": 0.74553,
-            "brier": 0.201969,
-            "brier_skill_vs_climatology": 0.189704,
-            "log_loss": 0.591288,
+            "auc": 0.745101,
+            "brier": 0.201987,
+            "brier_skill_vs_climatology": 0.188407,
+            "log_loss": 0.591482,
             "n": 4663,
             "positives": 2808
           },
           "p_raw": {
-            "auc": 0.747448,
-            "brier": 0.201938,
-            "brier_skill_vs_climatology": 0.189831,
-            "log_loss": 0.590953,
+            "auc": 0.74652,
+            "brier": 0.202088,
+            "brier_skill_vs_climatology": 0.188,
+            "log_loss": 0.591514,
             "n": 4663,
             "positives": 2808
           },
           "p_ens": {
-            "auc": 0.745832,
-            "brier": 0.202033,
-            "brier_skill_vs_climatology": 0.18945,
-            "log_loss": 0.591206,
+            "auc": 0.742123,
+            "brier": 0.203326,
+            "brier_skill_vs_climatology": 0.183024,
+            "log_loss": 0.597647,
             "n": 4663,
             "positives": 2808
           }
         },
         "h24": {
           "p_gbm": {
-            "auc": 0.750807,
-            "brier": 0.148831,
-            "brier_skill_vs_climatology": 0.094828,
-            "log_loss": 0.454513,
+            "auc": 0.752332,
+            "brier": 0.147891,
+            "brier_skill_vs_climatology": 0.100925,
+            "log_loss": 0.452935,
             "n": 4582,
             "positives": 3745
           },
           "p_logit": {
-            "auc": 0.770716,
-            "brier": 0.136861,
-            "brier_skill_vs_climatology": 0.167626,
-            "log_loss": 0.423103,
+            "auc": 0.771238,
+            "brier": 0.136603,
+            "brier_skill_vs_climatology": 0.169548,
+            "log_loss": 0.422449,
             "n": 4582,
             "positives": 3745
           },
           "p_raw": {
-            "auc": 0.772636,
-            "brier": 0.137396,
-            "brier_skill_vs_climatology": 0.164374,
-            "log_loss": 0.420109,
+            "auc": 0.773206,
+            "brier": 0.136921,
+            "brier_skill_vs_climatology": 0.167616,
+            "log_loss": 0.419028,
             "n": 4582,
             "positives": 3745
           },
           "p_ens": {
-            "auc": 0.770471,
-            "brier": 0.137127,
-            "brier_skill_vs_climatology": 0.166008,
-            "log_loss": 0.420968,
+            "auc": 0.767529,
+            "brier": 0.137245,
+            "brier_skill_vs_climatology": 0.165644,
+            "log_loss": 0.4227,
             "n": 4582,
             "positives": 3745
           }
@@ -743,224 +743,224 @@
           "episode": "Nasdaq-100 2000",
           "ticker": "^NDX",
           "peak": "2000-03-27",
-          "p12_at_peak": 0.866509,
-          "climatology": 0.467532,
-          "lift": 1.853367,
-          "p12_24m_before": 0.316773
+          "p12_at_peak": 0.840369,
+          "climatology": 0.471236,
+          "lift": 1.783332,
+          "p12_24m_before": 0.325847
         },
         {
           "episode": "Semiconductors 2000",
           "ticker": "^SOX",
           "peak": "2000-03-10",
-          "p12_at_peak": 0.969383,
-          "climatology": 0.467532,
-          "lift": 2.073403,
-          "p12_24m_before": 0.819405
+          "p12_at_peak": 0.962505,
+          "climatology": 0.471236,
+          "lift": 2.042513,
+          "p12_24m_before": 0.830173
         },
         {
           "episode": "Cisco 2000",
           "ticker": "CSCO",
           "peak": "2000-03-27",
-          "p12_at_peak": 0.899536,
-          "climatology": 0.467532,
-          "lift": 1.924008,
-          "p12_24m_before": 0.781551
+          "p12_at_peak": 0.899836,
+          "climatology": 0.471236,
+          "lift": 1.909524,
+          "p12_24m_before": 0.790033
         },
         {
           "episode": "Shanghai 2007",
           "ticker": "000001.SS",
           "peak": "2007-10-16",
-          "p12_at_peak": 0.87117,
-          "climatology": 0.515625,
-          "lift": 1.689543,
-          "p12_24m_before": 0.61165
+          "p12_at_peak": 0.867074,
+          "climatology": 0.518436,
+          "lift": 1.672482,
+          "p12_24m_before": 0.568898
         },
         {
           "episode": "Oil 2008",
           "ticker": "CL=F",
           "peak": "2008-07-03",
-          "p12_at_peak": 0.928094,
-          "climatology": 0.511404,
-          "lift": 1.814795,
-          "p12_24m_before": 0.631152
+          "p12_at_peak": 0.92607,
+          "climatology": 0.514092,
+          "lift": 1.801371,
+          "p12_24m_before": 0.62015
         },
         {
           "episode": "Bitcoin 2017",
           "ticker": "BTC-USD",
           "peak": "2017-12-16",
-          "p12_at_peak": 0.99335,
-          "climatology": 0.530154,
-          "lift": 1.8737,
-          "p12_24m_before": 0.969559
+          "p12_at_peak": 0.99408,
+          "climatology": 0.532285,
+          "lift": 1.86757,
+          "p12_24m_before": 0.970831
         },
         {
           "episode": "ARK Innovation 2021",
           "ticker": "ARKK",
           "peak": "2021-02-12",
-          "p12_at_peak": 0.956232,
-          "climatology": 0.535819,
-          "lift": 1.784619,
-          "p12_24m_before": 0.43038
+          "p12_at_peak": 0.949478,
+          "climatology": 0.537528,
+          "lift": 1.766379,
+          "p12_24m_before": 0.428499
         },
         {
           "episode": "NVIDIA 2021",
           "ticker": "NVDA",
           "peak": "2021-11-29",
-          "p12_at_peak": 0.935677,
-          "climatology": 0.535819,
-          "lift": 1.746257,
-          "p12_24m_before": 0.938405
+          "p12_at_peak": 0.939549,
+          "climatology": 0.537528,
+          "lift": 1.747907,
+          "p12_24m_before": 0.935054
         },
         {
           "episode": "Bitcoin 2021",
           "ticker": "BTC-USD",
           "peak": "2021-11-08",
-          "p12_at_peak": 0.976771,
-          "climatology": 0.535819,
-          "lift": 1.822951,
-          "p12_24m_before": 0.987913
+          "p12_at_peak": 0.977189,
+          "climatology": 0.537528,
+          "lift": 1.817931,
+          "p12_24m_before": 0.990674
         }
       ],
       "targets": {
         "AI20": {
           "name": "ICARUS AI-20",
-          "as_of": "2026-11-09",
-          "drawdown_from_peak": -0.201113,
+          "as_of": "2026-11-16",
+          "drawdown_from_peak": -0.227935,
           "worst_drawdown_since_peak": -0.271902,
           "peak_date": "2026-10-06",
           "already_happened": true
         },
         "^NDX": {
           "name": "Nasdaq-100",
-          "as_of": "2026-11-09",
-          "drawdown_from_peak": -0.106226,
+          "as_of": "2026-11-16",
+          "drawdown_from_peak": -0.12898,
           "worst_drawdown_since_peak": -0.147149,
           "peak_date": "2026-10-06",
           "already_happened": false,
           "cdf": [
-            0.056713,
-            0.123157,
-            0.19011,
-            0.243796,
-            0.330557,
-            0.378332,
-            0.421693,
-            0.489375,
-            0.523991,
-            0.554715,
-            0.597692,
-            0.621859,
-            0.643331,
-            0.662451,
-            0.679519,
-            0.715785,
-            0.729504,
-            0.741857,
-            0.753013,
-            0.763119,
-            0.772298,
-            0.78967,
-            0.797305,
-            0.804296
+            0.106483,
+            0.195467,
+            0.281164,
+            0.348941,
+            0.443465,
+            0.496239,
+            0.541496,
+            0.609358,
+            0.642271,
+            0.670397,
+            0.710039,
+            0.730838,
+            0.748858,
+            0.764551,
+            0.77829,
+            0.803386,
+            0.814074,
+            0.823566,
+            0.832035,
+            0.839621,
+            0.846444,
+            0.859382,
+            0.864961,
+            0.87003
           ],
-          "p3": 0.19011,
-          "p6": 0.378332,
-          "p12": 0.621859,
-          "p24": 0.804296,
-          "median_months": 9
+          "p3": 0.281164,
+          "p6": 0.496239,
+          "p12": 0.730838,
+          "p24": 0.87003,
+          "median_months": 7
         },
         "SMH": {
           "name": "Semiconductors (SMH)",
-          "as_of": "2026-11-09",
-          "drawdown_from_peak": -0.271337,
+          "as_of": "2026-11-16",
+          "drawdown_from_peak": -0.309474,
           "worst_drawdown_since_peak": -0.330657,
           "peak_date": "2026-06-22",
           "already_happened": true
         },
         "NVDA": {
           "name": "NVIDIA",
-          "as_of": "2026-11-09",
-          "drawdown_from_peak": -0.253177,
-          "worst_drawdown_since_peak": -0.253177,
+          "as_of": "2026-11-16",
+          "drawdown_from_peak": -0.34735,
+          "worst_drawdown_since_peak": -0.34735,
           "peak_date": "2026-10-06",
           "already_happened": true
         },
         "^GSPC": {
           "name": "S&P 500",
-          "as_of": "2026-11-09",
-          "drawdown_from_peak": -0.034402,
+          "as_of": "2026-11-16",
+          "drawdown_from_peak": -0.051457,
           "worst_drawdown_since_peak": -0.059497,
           "peak_date": "2026-10-06",
           "already_happened": false,
           "cdf": [
-            0.009291,
-            0.02496,
-            0.044761,
-            0.06277,
-            0.097626,
-            0.118417,
-            0.139859,
-            0.183175,
-            0.204917,
-            0.226448,
-            0.276411,
-            0.297055,
-            0.3171,
-            0.336482,
-            0.355159,
-            0.410581,
-            0.427792,
-            0.444266,
-            0.460013,
-            0.475048,
-            0.489391,
-            0.529226,
-            0.542259,
-            0.554675
+            0.012762,
+            0.032781,
+            0.058046,
+            0.081147,
+            0.125476,
+            0.151258,
+            0.177371,
+            0.229204,
+            0.254736,
+            0.27957,
+            0.33229,
+            0.355293,
+            0.377265,
+            0.398178,
+            0.418028,
+            0.469801,
+            0.487585,
+            0.504387,
+            0.520248,
+            0.535215,
+            0.549335,
+            0.583689,
+            0.596256,
+            0.608115
           ],
-          "p3": 0.044761,
-          "p6": 0.118417,
-          "p12": 0.297055,
-          "p24": 0.554675,
-          "median_months": 22
+          "p3": 0.058046,
+          "p6": 0.151258,
+          "p12": 0.355293,
+          "p24": 0.608115,
+          "median_months": 18
         }
       },
-      "n_rows": 48500,
+      "n_rows": 48476,
       "n_series": 64,
-      "n_events": 449,
-      "seconds": 54.2
+      "n_events": 450,
+      "seconds": 47.1
     }
   },
   "psy": {
     "AI20": {
       "label": "ICARUS AI-20 (weekly, 2015+)",
       "gsadf": 1.805478,
-      "gsadf_cv95": 2.533528,
+      "gsadf_cv95": 2.523864,
       "global_reject": false,
       "episodes": [],
       "explosive_now": false,
-      "bsadf_latest": 0.375858,
-      "cv95_latest": 0.749454
+      "bsadf_latest": 0.304368,
+      "cv95_latest": 0.703594
     },
     "NVDA": {
       "label": "NVIDIA (weekly, 2015+)",
       "gsadf": 1.628963,
-      "gsadf_cv95": 2.533528,
+      "gsadf_cv95": 2.523864,
       "global_reject": false,
       "episodes": [],
       "explosive_now": false,
-      "bsadf_latest": -0.144922,
-      "cv95_latest": 0.749454
+      "bsadf_latest": -0.293834,
+      "cv95_latest": 0.703594
     },
     "SMH": {
       "label": "Semiconductors (weekly, 2015+)",
       "gsadf": 1.722376,
-      "gsadf_cv95": 2.533528,
+      "gsadf_cv95": 2.523864,
       "global_reject": false,
       "episodes": [],
       "explosive_now": false,
-      "bsadf_latest": 0.172673,
-      "cv95_latest": 0.749454
+      "bsadf_latest": 0.069192,
+      "cv95_latest": 0.703594
     },
     "^NDX": {
       "label": "Nasdaq-100 (monthly, 1985+)",
@@ -1012,7 +1012,7 @@
         }
       ],
       "explosive_now": true,
-      "bsadf_latest": 0.909042,
+      "bsadf_latest": 0.858848,
       "cv95_latest": 0.735766
     },
     "^SOX": {
@@ -1022,7 +1022,7 @@
       "global_reject": false,
       "episodes": [],
       "explosive_now": false,
-      "bsadf_latest": 1.227747,
+      "bsadf_latest": 1.135645,
       "cv95_latest": 0.67037
     }
   },
@@ -1040,18 +1040,18 @@
           "n_fits": 5,
           "error_days": -4
         },
-        "confidence_latest": 0.192308,
+        "confidence_latest": 0.153846,
         "confidence_max_6m": 0.307692,
         "confidence_max_date": "2026-10-09",
         "negative_confidence_latest": 0.0,
         "tc": {
-          "n_qualified": 36,
+          "n_qualified": 31,
           "n_fits": 156,
           "q10": "2026-09-28",
-          "q25": "2026-09-30",
-          "q50": "2026-11-02",
-          "q75": "2027-01-28",
-          "q90": "2027-02-03"
+          "q25": "2026-09-29",
+          "q50": "2027-01-14",
+          "q75": "2027-02-02",
+          "q90": "2027-02-09"
         }
       },
       "^NDX": {
@@ -1065,18 +1065,18 @@
           "n_fits": 1,
           "error_days": -32
         },
-        "confidence_latest": 0.153846,
+        "confidence_latest": 0.115385,
         "confidence_max_6m": 0.230769,
-        "confidence_max_date": "2026-05-11",
+        "confidence_max_date": "2026-05-18",
         "negative_confidence_latest": 0.0,
         "tc": {
-          "n_qualified": 13,
+          "n_qualified": 16,
           "n_fits": 156,
           "q10": "2026-09-30",
           "q25": "2026-09-30",
-          "q50": "2026-12-01",
+          "q50": "2026-11-03",
           "q75": "2027-01-26",
-          "q90": "2027-01-31"
+          "q90": "2027-02-03"
         }
       },
       "NVDA": {
@@ -1102,17 +1102,17 @@
           "error_days": 36
         },
         "confidence_latest": 0.0,
-        "confidence_max_6m": 0.807692,
-        "confidence_max_date": "2026-05-11",
+        "confidence_max_6m": 0.769231,
+        "confidence_max_date": "2026-05-26",
         "negative_confidence_latest": 0.0,
         "tc": {
-          "n_qualified": 4,
+          "n_qualified": 3,
           "n_fits": 156,
-          "q10": "2026-09-06",
-          "q25": "2026-09-23",
-          "q50": "2026-10-03",
-          "q75": "2026-10-05",
-          "q90": "2026-10-07"
+          "q10": "2026-09-03",
+          "q25": "2026-09-14",
+          "q50": "2026-10-02",
+          "q75": "2026-10-03",
+          "q90": "2026-10-04"
         }
       }
     },
@@ -1183,36 +1183,36 @@
   },
   "regimes": {
     "expected_duration_weeks": {
-      "calm": 10.141174,
-      "stress": 13.776008,
-      "choppy": 6.958532
+      "stress": 13.755541,
+      "calm": 10.257397,
+      "choppy": 7.025354
     },
     "state_stats": {
-      "calm": {
-        "weekly_return_mean": 0.006294,
-        "annualised_vol": 0.113886
-      },
       "stress": {
-        "weekly_return_mean": -0.007273,
-        "annualised_vol": 0.428949
+        "weekly_return_mean": -0.007337,
+        "annualised_vol": 0.430297
+      },
+      "calm": {
+        "weekly_return_mean": 0.00628,
+        "annualised_vol": 0.114041
       },
       "choppy": {
-        "weekly_return_mean": 0.001499,
-        "annualised_vol": 0.219037
+        "weekly_return_mean": 0.001456,
+        "annualised_vol": 0.219563
       }
     },
     "current": {
-      "date": "2026-11-09",
+      "date": "2026-11-16",
       "regime": "stress",
       "probabilities": {
         "calm": 0.0,
-        "choppy": 0.015891,
-        "stress": 0.984109
+        "choppy": 0.028769,
+        "stress": 0.971231
       },
-      "p_stress_in_4w": 0.738093,
-      "p_stress_in_13w": 0.425456,
-      "p_stress_in_26w": 0.23926,
-      "long_run_share_stress": 0.137357
+      "p_stress_in_4w": 0.72892,
+      "p_stress_in_13w": 0.420217,
+      "p_stress_in_26w": 0.236125,
+      "long_run_share_stress": 0.135204
     },
     "validation_share_stress": {
       "2000-02 dot-com bust": 0.955224,
@@ -1222,74 +1222,74 @@
     },
     "transition": {
       "calm": {
-        "calm": 0.9014,
-        "choppy": 0.1183,
+        "calm": 0.9025,
+        "choppy": 0.1173,
         "stress": 0.0
       },
       "choppy": {
-        "calm": 0.0986,
-        "choppy": 0.8563,
-        "stress": 0.0726
+        "calm": 0.0975,
+        "choppy": 0.8577,
+        "stress": 0.0727
       },
       "stress": {
         "calm": 0.0,
-        "choppy": 0.0254,
-        "stress": 0.9274
+        "choppy": 0.025,
+        "stress": 0.9273
       }
     }
   },
   "systemic": {
-    "absorption_ratio": 0.614224,
-    "absorption_ratio_pctile": 0.00307,
-    "delta_ar": -1.558487,
-    "ai20_avg_corr": 0.464174,
-    "ai20_avg_corr_pctile": 0.801575,
-    "breadth_date": "2026-11-09",
-    "ai20_share_in_bear": 0.75,
+    "absorption_ratio": 0.629941,
+    "absorption_ratio_pctile": 0.015337,
+    "delta_ar": -1.484207,
+    "ai20_avg_corr": 0.475653,
+    "ai20_avg_corr_pctile": 0.822327,
+    "breadth_date": "2026-11-16",
+    "ai20_share_in_bear": 0.85,
     "ai20_n_members": 20,
-    "ai20_n_in_bear": 15,
-    "ai20_share_burst": 0.3,
-    "ai20_share_above_ma200": 0.35,
-    "ai20_median_dd": -0.298064,
-    "rsp_spy": 0.293547,
-    "concentration_pctile": 0.94527
+    "ai20_n_in_bear": 17,
+    "ai20_share_burst": 0.35,
+    "ai20_share_above_ma200": 0.3,
+    "ai20_median_dd": -0.306332,
+    "rsp_spy": 0.295871,
+    "concentration_pctile": 0.934515
   },
   "analogs": {
     "summary": {
       "n_analogs": 12,
       "best_match": {
         "episode": "Nikkei 1989",
-        "today_equivalent": "1987-11-20",
-        "rmse": 0.242335,
-        "months_to_peak": 22.014309,
-        "drawdown_ahead": -0.050277
+        "today_equivalent": "1987-12-04",
+        "rmse": 0.243892,
+        "months_to_peak": 21.614049,
+        "drawdown_ahead": -0.045957
       },
-      "months_to_peak_weighted_median": -1.885035,
-      "months_to_peak_q25": -1.917913,
-      "months_to_peak_q75": 14.898077,
-      "share_past_peak": 0.651045,
-      "drawdown_ahead_weighted_median": -0.63484
+      "months_to_peak_weighted_median": -1.972711,
+      "months_to_peak_q25": -2.20286,
+      "months_to_peak_q75": 14.754233,
+      "share_past_peak": 0.650988,
+      "drawdown_ahead_weighted_median": -0.530894
     },
     "table": [
       {
         "episode": "Nikkei 1989",
         "ticker": "^N225",
         "peak": "1989-12-29",
-        "rmse": 0.242335,
+        "rmse": 0.243892,
         "stretch": 1.15,
-        "end": 1191,
-        "amp_ratio": 1.535397,
-        "today_equivalent": "1987-11-20",
-        "months_to_peak": 22.014309,
-        "drawdown_ahead": -0.050277,
-        "return_12m_ahead": 0.285157,
-        "weight": 0.116677
+        "end": 1193,
+        "amp_ratio": 1.531984,
+        "today_equivalent": "1987-12-04",
+        "months_to_peak": 21.614049,
+        "drawdown_ahead": -0.045957,
+        "return_12m_ahead": 0.306578,
+        "weight": 0.117856
       },
       {
         "episode": "ARK Innovation 2021",
         "ticker": "ARKK",
         "peak": "2021-02-12",
-        "rmse": 0.251345,
+        "rmse": 0.256432,
         "stretch": 0.6,
         "end": 333,
         "amp_ratio": 0.823043,
@@ -1297,97 +1297,97 @@
         "months_to_peak": -1.917913,
         "drawdown_ahead": -0.744805,
         "return_12m_ahead": -0.45805,
-        "weight": 0.108463
-      },
-      {
-        "episode": "Cisco 2000",
-        "ticker": "CSCO",
-        "peak": "2000-03-27",
-        "rmse": 0.258095,
-        "stretch": 1.0,
-        "end": 536,
-        "amp_ratio": 0.629798,
-        "today_equivalent": "2000-05-26",
-        "months_to_peak": -1.972711,
-        "drawdown_ahead": -0.779932,
-        "return_12m_ahead": -0.598635,
-        "weight": 0.102864
+        "weight": 0.106611
       },
       {
         "episode": "Nasdaq-100 2000",
         "ticker": "^NDX",
         "peak": "2000-03-27",
-        "rmse": 0.263684,
+        "rmse": 0.26474,
         "stretch": 1.0,
-        "end": 763,
-        "amp_ratio": 0.840148,
-        "today_equivalent": "2000-05-19",
-        "months_to_peak": -1.742561,
-        "drawdown_ahead": -0.654378,
-        "return_12m_ahead": -0.4088,
-        "weight": 0.098549
+        "end": 764,
+        "amp_ratio": 0.840217,
+        "today_equivalent": "2000-05-26",
+        "months_to_peak": -1.972711,
+        "drawdown_ahead": -0.636637,
+        "return_12m_ahead": -0.367797,
+        "weight": 0.100025
+      },
+      {
+        "episode": "Cisco 2000",
+        "ticker": "CSCO",
+        "peak": "2000-03-27",
+        "rmse": 0.264958,
+        "stretch": 1.0,
+        "end": 537,
+        "amp_ratio": 0.634016,
+        "today_equivalent": "2000-06-02",
+        "months_to_peak": -2.20286,
+        "drawdown_ahead": -0.812194,
+        "return_12m_ahead": -0.707184,
+        "weight": 0.09986
       },
       {
         "episode": "NVIDIA 2021",
         "ticker": "NVDA",
         "peak": "2021-11-29",
-        "rmse": 0.275043,
+        "rmse": 0.275644,
         "stretch": 1.15,
-        "end": 1202,
-        "amp_ratio": 0.600585,
-        "today_equivalent": "2022-02-04",
-        "months_to_peak": -1.915531,
-        "drawdown_ahead": -0.538031,
-        "return_12m_ahead": -0.131554,
-        "weight": 0.090578
+        "end": 1203,
+        "amp_ratio": 0.619402,
+        "today_equivalent": "2022-02-11",
+        "months_to_peak": -2.115661,
+        "drawdown_ahead": -0.530894,
+        "return_12m_ahead": -0.111241,
+        "weight": 0.092267
       },
       {
         "episode": "Semiconductors 2000",
         "ticker": "^SOX",
         "peak": "2000-03-10",
-        "rmse": 0.277484,
+        "rmse": 0.285797,
         "stretch": 0.75,
-        "end": 292,
-        "amp_ratio": 0.969676,
-        "today_equivalent": "1999-12-10",
-        "months_to_peak": 3.98926,
-        "drawdown_ahead": -0.409291,
-        "return_12m_ahead": 0.009026,
-        "weight": 0.088991
+        "end": 293,
+        "amp_ratio": 0.973539,
+        "today_equivalent": "1999-12-17",
+        "months_to_peak": 3.682394,
+        "drawdown_ahead": -0.415491,
+        "return_12m_ahead": -0.094723,
+        "weight": 0.085829
       },
       {
         "episode": "Hang Seng 2007",
         "ticker": "^HSI",
         "peak": "2007-10-30",
-        "rmse": 0.296964,
+        "rmse": 0.296621,
         "stretch": 1.6,
-        "end": 983,
-        "amp_ratio": 1.924797,
-        "today_equivalent": "2005-11-04",
-        "months_to_peak": 14.898077,
+        "end": 984,
+        "amp_ratio": 1.948787,
+        "today_equivalent": "2005-11-11",
+        "months_to_peak": 14.754233,
         "drawdown_ahead": 0.0,
-        "return_12m_ahead": 0.285476,
-        "weight": 0.077698
+        "return_12m_ahead": 0.281572,
+        "weight": 0.079679
       },
       {
         "episode": "Crude oil 2008",
         "ticker": "CL=F",
         "peak": "2008-07-03",
-        "rmse": 0.308769,
+        "rmse": 0.311716,
         "stretch": 0.75,
-        "end": 416,
-        "amp_ratio": 1.247272,
-        "today_equivalent": "2008-08-15",
-        "months_to_peak": -1.885035,
-        "drawdown_ahead": -0.702294,
-        "return_12m_ahead": -0.40661,
-        "weight": 0.071871
+        "end": 417,
+        "amp_ratio": 1.235291,
+        "today_equivalent": "2008-08-22",
+        "months_to_peak": -2.191901,
+        "drawdown_ahead": -0.704424,
+        "return_12m_ahead": -0.355179,
+        "weight": 0.072148
       },
       {
         "episode": "Shanghai 2007",
         "ticker": "000001.SS",
         "peak": "2007-10-16",
-        "rmse": 0.321676,
+        "rmse": 0.32325,
         "stretch": 0.75,
         "end": 524,
         "amp_ratio": 0.876405,
@@ -1395,59 +1395,59 @@
         "months_to_peak": -4.120774,
         "drawdown_ahead": -0.666291,
         "return_12m_ahead": -0.615741,
-        "weight": 0.066219
+        "weight": 0.067092
       },
       {
         "episode": "Bitcoin 2021",
         "ticker": "BTC-USD",
         "peak": "2021-11-08",
-        "rmse": 0.323218,
+        "rmse": 0.326786,
         "stretch": 0.6,
-        "end": 183,
-        "amp_ratio": 0.378553,
-        "today_equivalent": "2018-03-23",
-        "months_to_peak": 72.661516,
-        "drawdown_ahead": -0.63484,
-        "return_12m_ahead": -0.546831,
-        "weight": 0.065589
+        "end": 184,
+        "amp_ratio": 0.385697,
+        "today_equivalent": "2018-03-30",
+        "months_to_peak": 72.277933,
+        "drawdown_ahead": -0.529428,
+        "return_12m_ahead": -0.405215,
+        "weight": 0.065648
       },
       {
         "episode": "Bitcoin 2017",
         "ticker": "BTC-USD",
         "peak": "2017-12-16",
-        "rmse": 0.323218,
+        "rmse": 0.326786,
         "stretch": 0.6,
-        "end": 183,
-        "amp_ratio": 0.378553,
-        "today_equivalent": "2018-03-23",
-        "months_to_peak": -5.31536,
-        "drawdown_ahead": -0.63484,
-        "return_12m_ahead": -0.546831,
-        "weight": 0.065589
+        "end": 184,
+        "amp_ratio": 0.385697,
+        "today_equivalent": "2018-03-30",
+        "months_to_peak": -5.698942,
+        "drawdown_ahead": -0.529428,
+        "return_12m_ahead": -0.405215,
+        "weight": 0.065648
       },
       {
         "episode": "Shanghai 2015",
         "ticker": "000001.SS",
         "peak": "2015-06-12",
-        "rmse": 0.38218,
+        "rmse": 0.384833,
         "stretch": 0.6,
-        "end": 908,
-        "amp_ratio": 1.234275,
-        "today_equivalent": "2015-07-17",
-        "months_to_peak": -1.917913,
-        "drawdown_ahead": -0.308224,
-        "return_12m_ahead": -0.238679,
-        "weight": 0.046912
+        "end": 909,
+        "amp_ratio": 1.22955,
+        "today_equivalent": "2015-07-24",
+        "months_to_peak": -2.301496,
+        "drawdown_ahead": -0.327521,
+        "return_12m_ahead": -0.268139,
+        "weight": 0.047337
       }
     ],
     "clock": {
       "dotcom_months_anchor_to_peak": 55.589322,
-      "ai_months_since_anchor": 47.441478,
+      "ai_months_since_anchor": 47.671458,
       "calendar_equivalent_peak": "2027-07-19",
       "ndx_multiple_at_dotcom_peak": 8.15025,
-      "ndx_multiple_since_chatgpt": 2.326748,
+      "ndx_multiple_since_chatgpt": 2.267514,
       "ndx_multiple_since_chatgpt_peak": 2.574828,
-      "ai20_multiple_now": 7.34055,
+      "ai20_multiple_now": 7.094097,
       "ai20_multiple_peak": 8.98495
     }
   },
@@ -1807,151 +1807,151 @@
       }
     },
     "valuation": {
-      "date": "2026-11-10",
-      "ai20_market_cap_t": 23.921374,
-      "cap_weighted_trailing_pe": 22.392391,
-      "cap_weighted_forward_pe": 15.389362,
-      "cap_weighted_price_to_sales": 7.710745,
+      "date": "2026-11-17",
+      "ai20_market_cap_t": 22.848487,
+      "cap_weighted_trailing_pe": 22.499194,
+      "cap_weighted_forward_pe": 14.743066,
+      "cap_weighted_price_to_sales": 7.347144,
       "members": [
         {
           "ticker": "NVDA",
-          "marketCap": 4314344194048.0,
-          "trailingPE": 23.602377,
-          "forwardPE": 11.217311,
-          "priceToSalesTrailing12Months": 14.24017
+          "marketCap": 3770312556544.0,
+          "trailingPE": 20.598946,
+          "forwardPE": 9.855444,
+          "priceToSalesTrailing12Months": 12.444508
         },
         {
           "ticker": "AVGO",
-          "marketCap": 1525079343104.0,
-          "trailingPE": 40.802044,
-          "forwardPE": 16.41299,
-          "priceToSalesTrailing12Months": 17.115723
+          "marketCap": 1591528259584.0,
+          "trailingPE": 42.579823,
+          "forwardPE": 17.17314,
+          "priceToSalesTrailing12Months": 17.86147
         },
         {
           "ticker": "AMD",
-          "marketCap": 834115600384.0,
-          "trailingPE": 95.95848,
-          "forwardPE": 28.810257,
-          "priceToSalesTrailing12Months": 18.358034
+          "marketCap": 827063205888.0,
+          "trailingPE": 114.09049,
+          "forwardPE": 28.590137,
+          "priceToSalesTrailing12Months": 18.202818
         },
         {
           "ticker": "TSM",
-          "marketCap": 2015567544320.0,
-          "trailingPE": 24.334375,
-          "forwardPE": 16.61814,
-          "priceToSalesTrailing12Months": 0.407612
+          "marketCap": 1936888430592.0,
+          "trailingPE": 25.844292,
+          "forwardPE": 15.969441,
+          "priceToSalesTrailing12Months": 0.391701
         },
         {
           "ticker": "ASML",
-          "marketCap": 583233372160.0,
-          "trailingPE": 35.05328,
-          "forwardPE": 23.868565,
-          "priceToSalesTrailing12Months": 14.775314
+          "marketCap": 542201806848.0,
+          "trailingPE": 36.78844,
+          "forwardPE": 22.189367,
+          "priceToSalesTrailing12Months": 13.735843
         },
         {
           "ticker": "MU",
-          "marketCap": 829502980096.0,
-          "trailingPE": 9.28273,
-          "forwardPE": 3.528823,
-          "priceToSalesTrailing12Months": 6.228061
+          "marketCap": 813515931648.0,
+          "trailingPE": 10.470657,
+          "forwardPE": 3.460812,
+          "priceToSalesTrailing12Months": 6.108027
         },
         {
           "ticker": "ARM",
-          "marketCap": 199340998656.0,
-          "trailingPE": 214.13794,
-          "forwardPE": 60.53753,
-          "priceToSalesTrailing12Months": 36.482613
+          "marketCap": 187303510016.0,
+          "trailingPE": 218.8125,
+          "forwardPE": 56.70738,
+          "priceToSalesTrailing12Months": 34.27956
         },
         {
           "ticker": "MSFT",
-          "marketCap": 4048612753408.0,
-          "trailingPE": 28.454071,
-          "forwardPE": 22.532112,
-          "priceToSalesTrailing12Months": 11.686164
+          "marketCap": 3846694502400.0,
+          "trailingPE": 27.348995,
+          "forwardPE": 21.408358,
+          "priceToSalesTrailing12Months": 11.103334
         },
         {
           "ticker": "GOOGL",
-          "marketCap": 3542515974144.0,
-          "trailingPE": 14.868422,
-          "forwardPE": 18.668476,
-          "priceToSalesTrailing12Months": 7.5197
+          "marketCap": 3488053460992.0,
+          "trailingPE": 15.444746,
+          "forwardPE": 18.689484,
+          "priceToSalesTrailing12Months": 7.404093
         },
         {
           "ticker": "AMZN",
-          "marketCap": 2886350929920.0,
-          "trailingPE": 20.968578,
-          "forwardPE": 24.480816,
-          "priceToSalesTrailing12Months": 3.619453
+          "marketCap": 2787086172160.0,
+          "trailingPE": 21.551003,
+          "forwardPE": 23.590345,
+          "priceToSalesTrailing12Months": 3.494976
         },
         {
           "ticker": "META",
-          "marketCap": 1639876001792.0,
-          "trailingPE": 20.816942,
-          "forwardPE": 18.022163,
-          "priceToSalesTrailing12Months": 6.787426
+          "marketCap": 1601254981632.0,
+          "trailingPE": 21.89479,
+          "forwardPE": 17.558716,
+          "priceToSalesTrailing12Months": 6.627574
         },
         {
           "ticker": "ORCL",
-          "marketCap": 373470232576.0,
-          "trailingPE": 18.205168,
-          "forwardPE": 10.827437,
-          "priceToSalesTrailing12Months": 5.203274
+          "marketCap": 371287851008.0,
+          "trailingPE": 18.666143,
+          "forwardPE": 10.768789,
+          "priceToSalesTrailing12Months": 5.172869
         },
         {
           "ticker": "CRWV",
-          "marketCap": 27014260736.0,
+          "marketCap": 27739549696.0,
           "trailingPE": null,
-          "forwardPE": -24.129742,
-          "priceToSalesTrailing12Months": 3.559191
+          "forwardPE": -28.127556,
+          "priceToSalesTrailing12Months": 2.805943
         },
         {
           "ticker": "ANET",
-          "marketCap": 235207622656.0,
-          "trailingPE": 49.911526,
-          "forwardPE": 31.097368,
-          "priceToSalesTrailing12Months": 19.781803
+          "marketCap": 236281511936.0,
+          "trailingPE": 52.83051,
+          "forwardPE": 30.978962,
+          "priceToSalesTrailing12Months": 19.872122
         },
         {
           "ticker": "SMCI",
-          "marketCap": 18853904384.0,
-          "trailingPE": 6.072187,
-          "forwardPE": 4.118035,
-          "priceToSalesTrailing12Months": 0.349204
+          "marketCap": 16497165312.0,
+          "trailingPE": 5.661765,
+          "forwardPE": 3.603281,
+          "priceToSalesTrailing12Months": 0.305553
         },
         {
           "ticker": "DELL",
-          "marketCap": 220188311552.0,
-          "trailingPE": 19.10149,
-          "forwardPE": 11.429279,
-          "priceToSalesTrailing12Months": 1.456301
+          "marketCap": 203809767424.0,
+          "trailingPE": 20.034374,
+          "forwardPE": 10.460009,
+          "priceToSalesTrailing12Months": 1.347975
         },
         {
           "ticker": "VRT",
-          "marketCap": 77193060352.0,
-          "trailingPE": 37.471027,
-          "forwardPE": 20.368145,
-          "priceToSalesTrailing12Months": 5.885142
+          "marketCap": 72649351168.0,
+          "trailingPE": 37.734,
+          "forwardPE": 19.10801,
+          "priceToSalesTrailing12Months": 5.538734
         },
         {
           "ticker": "CEG",
-          "marketCap": 97820729344.0,
-          "trailingPE": 26.98827,
-          "forwardPE": 20.60327,
-          "priceToSalesTrailing12Months": 3.128261
+          "marketCap": 97683881984.0,
+          "trailingPE": 22.532036,
+          "forwardPE": 20.679932,
+          "priceToSalesTrailing12Months": 2.852084
         },
         {
           "ticker": "VST",
-          "marketCap": 45398880256.0,
-          "trailingPE": 18.024227,
-          "forwardPE": 14.162062,
-          "priceToSalesTrailing12Months": 2.205114
+          "marketCap": 44175613952.0,
+          "trailingPE": 17.977901,
+          "forwardPE": 13.904543,
+          "priceToSalesTrailing12Months": 2.145697
         },
         {
           "ticker": "PLTR",
-          "marketCap": 407686971392.0,
-          "trailingPE": 119.15493,
-          "forwardPE": 66.73977,
-          "priceToSalesTrailing12Months": 55.93749
+          "marketCap": 386459303936.0,
+          "trailingPE": 117.93382,
+          "forwardPE": 63.17626,
+          "priceToSalesTrailing12Months": 53.024906
         }
       ]
     }
@@ -1959,20 +1959,20 @@
   "risk_index": {
     "pillars": {
       "price_dynamics": {
-        "score": 70.696091,
+        "score": 70.082368,
         "components": {
-          "runup_z_pctile": 86.211814,
+          "runup_z_pctile": 84.370643,
           "max_bsadf_excess_12m_pctile": 95.10723,
           "lppls_confidence_x100": 30.769231
         }
       },
       "valuation": {
-        "score": 95.670378,
+        "score": 95.376361,
         "components": {
-          "cape": 39.85,
-          "cape_pctile": 98.55615,
-          "pe": 25.75,
-          "pe_pctile": 92.784607,
+          "cape": 39.16,
+          "cape_pctile": 98.342246,
+          "pe": 25.3,
+          "pe_pctile": 92.410476,
           "cape_dotcom_peak": 44.19
         }
       },
@@ -1986,42 +1986,42 @@
         }
       },
       "market_structure": {
-        "score": 62.497873,
+        "score": 65.554481,
         "components": {
-          "ai20_share_in_bear_x100": 75.0,
-          "concentration_pctile": 94.527027,
-          "ai20_corr_pctile": 80.15748,
-          "absorption_ratio_pctile": 0.306984
+          "ai20_share_in_bear_x100": 85.0,
+          "concentration_pctile": 93.451477,
+          "ai20_corr_pctile": 82.232704,
+          "absorption_ratio_pctile": 1.533742
         }
       },
       "credit_macro": {
-        "score": 79.413203,
+        "score": 75.008651,
         "components": {
-          "baa_spread_3m_change_pctile": 51.02459,
-          "hy_oas_3m_change_pctile": 97.058824,
-          "nfci_3m_change_pctile": 70.614693,
-          "real_yield_pctile": 98.954704
+          "baa_spread_3m_change_pctile": 35.655738,
+          "hy_oas_3m_change_pctile": 94.117647,
+          "nfci_3m_change_pctile": 70.958084,
+          "real_yield_pctile": 99.303136
         },
         "latest_levels": {
-          "BAA10Y": 1.56,
-          "BAMLH0A0HYM2": 3.42,
-          "NFCI": -0.459,
-          "DFII10": 2.63,
-          "T10Y3M": 0.64,
+          "BAA10Y": 1.47,
+          "BAMLH0A0HYM2": 3.23,
+          "NFCI": -0.462,
+          "DFII10": 2.91,
+          "T10Y3M": 0.78,
           "DFF": 3.88
         }
       },
       "sentiment": {
-        "score": 87.562189,
+        "score": 86.567164,
         "components": {
-          "wiki_Artificial_intelligence_pctile": 87.313433,
-          "wiki_Nvidia_pctile": 75.373134,
+          "wiki_Artificial_intelligence_pctile": 86.567164,
+          "wiki_Nvidia_pctile": 73.134328,
           "gdelt_ai_capex_pctile": 100.0
         },
         "fear_context": {
           "wiki_Stock_market_crash_pctile": 2.238806,
-          "wiki_Dot-com_bubble_pctile": 16.41791,
-          "gdelt_dotcom_bubble_pctile": null,
+          "wiki_Dot-com_bubble_pctile": 14.925373,
+          "gdelt_dotcom_bubble_pctile": 94.017094,
           "gdelt_ai_bubble_pctile": null
         },
         "extra": {
@@ -2038,7 +2038,7 @@
       }
     },
     "composite": {
-      "score": 82.139596,
+      "score": 81.68073,
       "pillars_used": [
         "price_dynamics",
         "valuation",
@@ -2048,37 +2048,37 @@
         "sentiment",
         "issuance"
       ],
-      "dirichlet_p10": 77.823326,
-      "dirichlet_p50": 84.020301,
-      "dirichlet_p90": 89.394806
+      "dirichlet_p10": 77.54514,
+      "dirichlet_p50": 83.412294,
+      "dirichlet_p90": 88.850073
     },
     "ndx_history_check": {
       "peak_1999_2000": 98.341833,
       "peak_2021": 84.411802,
-      "median_all": 68.425666,
-      "latest": 74.315184
+      "median_all": 68.418484,
+      "latest": 68.076228
     }
   },
   "verdict": {
     "is_bubble": true,
     "stage": "deflating",
     "ai20_peak_date": "2026-10-06",
-    "ai20_drawdown_from_peak": -0.201113,
-    "bubble_risk_index": 82.139596,
-    "p_burst_12m": 0.403016,
-    "p_burst_24m": 0.619973,
+    "ai20_drawdown_from_peak": -0.227935,
+    "bubble_risk_index": 81.68073,
+    "p_burst_12m": 0.487643,
+    "p_burst_24m": 0.692209,
     "p_burst_12m_interval": [
-      0.292097,
-      0.47528
+      0.390844,
+      0.57098
     ],
     "p_burst_24m_interval": [
-      0.519991,
-      0.714214
+      0.617578,
+      0.758597
     ],
     "p_bear_3m": 1.0,
     "bear_already": true,
     "most_likely_burst_month": "2027-04",
-    "conditional_median_burst_month": "2027-08",
+    "conditional_median_burst_month": "2027-07",
     "burst_level_ai20": null,
     "psy_bubble_episodes_ai20": [],
     "psy_explosive_series_since_2023": [
@@ -2102,24 +2102,24 @@
     },
     "lppls_confidence_max_6m": 0.307692,
     "lppls_tc": {
-      "n_qualified": 36,
+      "n_qualified": 31,
       "n_fits": 156,
       "q10": "2026-09-28",
-      "q25": "2026-09-30",
-      "q50": "2026-11-02",
-      "q75": "2027-01-28",
-      "q90": "2027-02-03"
+      "q25": "2026-09-29",
+      "q50": "2027-01-14",
+      "q75": "2027-02-02",
+      "q90": "2027-02-09"
     },
     "regime": "stress",
     "regime_probabilities": {
       "calm": 0.0,
-      "choppy": 0.015891,
-      "stress": 0.984109
+      "choppy": 0.028769,
+      "stress": 0.971231
     },
-    "analog_share_past_peak": 0.651045,
-    "analog_months_to_peak_median": -1.885035,
-    "analog_drawdown_ahead_median": -0.63484,
+    "analog_share_past_peak": 0.650988,
+    "analog_months_to_peak_median": -1.972711,
+    "analog_drawdown_ahead_median": -0.530894,
     "dotcom_clock_equivalent_peak": "2027-07-19"
   },
-  "runtime_seconds": 654.0
+  "runtime_seconds": 515.4
 }

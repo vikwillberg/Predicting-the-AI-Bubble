@@ -1,5 +1,5 @@
 {
-  "run_utc": "2026-11-10T04:15:01+00:00",
+  "run_utc": "2026-11-17T04:41:07+00:00",
   "sources": {
     "edgar_facts": {
       "failures": {
@@ -9,56 +9,55 @@
     },
     "fred": {
       "failures": {},
-      "max_date": "2026-11-09",
+      "max_date": "2026-11-16",
       "min_date": "1854-12-01",
-      "rows": 134992,
-      "sha256_16": "9c5667dfce0c41ab"
+      "rows": 135042,
+      "sha256_16": "f9776bbc1e24aed2"
     },
     "gdelt": {
       "failures": {
-        "ai_bubble": "HTTPSConnectionPool(host='api.gdeltproject.org', port=443): Max retries exceeded with url: /api/v2/doc/doc?query=%22AI%20bubble%22&mode=timelinevolraw&format=json&startdatetime=20170101000000&enddatetime=20261110235959&timelinesmooth=0 (Caused by ResponseError('too many 429 error responses'))",
-        "dotcom_bubble": "HTTPSConnectionPool(host='api.gdeltproject.org', port=443): Max retries exceeded with url: /api/v2/doc/doc?query=%22dot-com%20bubble%22&mode=timelinevolraw&format=json&startdatetime=20170101000000&enddatetime=20261110235959&timelinesmooth=0 (Caused by ProtocolError('Connection aborted.', RemoteDisconnected('Remote end closed connection without response')))"
+        "ai_bubble": "HTTPSConnectionPool(host='api.gdeltproject.org', port=443): Max retries exceeded with url: /api/v2/doc/doc?query=%22AI%20bubble%22&mode=timelinevolraw&format=json&startdatetime=20170101000000&enddatetime=20261117235959&timelinesmooth=0 (Caused by ProtocolError('Connection aborted.', RemoteDisconnected('Remote end closed connection without response')))"
       },
-      "max_date": "2026-11-10",
+      "max_date": "2026-11-15",
       "min_date": "2017-01-01",
-      "rows": 3554,
-      "sha256_16": "7dc3b4d090176fd3"
+      "rows": 7118,
+      "sha256_16": "50f52483fee53931"
     },
     "multpl": {
       "failures": {},
-      "max_date": "2026-11-09",
+      "max_date": "2026-11-16",
       "min_date": "1871-01-01",
       "rows": 3743,
-      "sha256_16": "b7a78b09ed8b5a7e"
+      "sha256_16": "2af0c779bf7488ad"
     },
     "prices": {
       "failures": {
         "JNPR": "yahoo: Yahoo download failed for JNPR: empty response; stooq: Stooq returned no data for JNPR"
       },
-      "max_date": "2026-11-09",
+      "max_date": "2026-11-16",
       "min_date": "1927-12-30",
-      "rows": 660621,
-      "sha256_16": "3171b3f378880178",
+      "rows": 661129,
+      "sha256_16": "d09238568d0e8bcc",
       "tickers": 102
     },
     "valuation_snapshots": {
       "failures": {},
-      "max_date": "2026-11-10",
-      "min_date": "2026-11-10",
+      "max_date": "2026-11-17",
+      "min_date": "2026-11-17",
       "rows": 20,
-      "sha256_16": "a8bc75cbad67e50e"
+      "sha256_16": "f9ea2482cd0cd19d"
     },
     "wiki_pageviews": {
       "failures": {},
-      "max_date": "2026-11-09",
+      "max_date": "2026-11-16",
       "min_date": "2015-07-01",
-      "rows": 37700,
-      "sha256_16": "2c2f7a4197b76d4e"
+      "rows": 37787,
+      "sha256_16": "6d71858225ce1d69"
     },
     "yahoo_fundamentals": {
       "failures": {},
       "rows": 1005,
-      "sha256_16": "aec1ce7efa466ce9"
+      "sha256_16": "5df41be454dc37d4"
     }
   }
 }
